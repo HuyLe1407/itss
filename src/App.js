@@ -5,7 +5,6 @@ import Dashboard from './component/dashboard';
 import Home from './component/home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ForgotPassword from "./component/ForgotPassword";
-import NavBar from './component/navbar/NavBar';
 import './App.css';
 import {Button, Nav, Navbar} from 'react-bootstrap';
 import SuggestProduct from './component/suggestion'
