@@ -1,15 +1,19 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React,{useState,useEffect} from 'react';
 import {Navbar, Table} from 'react-bootstrap';
-import {auth} from "../firebase";
+import {auth,db} from "../firebase";
 import {useNavigate} from "react-router-dom";
+import { MdArticle } from "react-icons/md";
 
 
 export default function Home(){
-    const [data,setData] = useState([]);
+ 
     const[searchTerm,setSearchTerm] = useState('');
     const[currentPage,setcurrentPage] = useState(1);
     const[postPerPage] = useState(2);
+  const [users,setUsers] = useState([]);
+
+
     const navigate = useNavigate();
     useEffect(()=>{
         //Check user is logined
@@ -22,41 +26,36 @@ export default function Home(){
             }
         })
     },[])
+  
     useEffect(() => {
-        const url = "https://api-truongcongtoan.herokuapp.com/api/students";
+     const getUserFromFB = [];
+   db.collection("users").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+          getUserFromFB.push({...doc.data(),key:doc.id,
+          });
+      });
+      setUsers(getUserFromFB);
+     
+  });
 
-        const fetchData = async () => {
-          try {
-            const response = await fetch(url);
-            const json = await response.json();
-            setData(json);
-          } catch (error) {
-            console.log("error", error);
-          }
-        };
 
-        fetchData();
-    }, []);
-
+ },[]);
+    
     //get currentPost
     const indexofLast = currentPage*postPerPage;
     const indexofFirst = indexofLast - postPerPage;
-    const currentPosts = data.slice(indexofFirst,indexofLast)
+    const currentPosts = users.slice(indexofFirst,indexofLast)
 
    const pageNumber =[];
-   for(let i =1;i <= Math.ceil(data.length / postPerPage);i++){
+   for(let i =1;i <= Math.ceil(users.length / postPerPage);i++){
      pageNumber.push(i);
    };
    const paginate = (pageNumber) => setcurrentPage(pageNumber);
     return(
-        // <div className="d-flex flex-column shadow-lg p-3 m-auto mt-5" style={{maxWidth:'500px'}}>
-        //     <h1 className="text-center">Please select an option: </h1>
-        //     <Link className="btn btn-info m-1" to='/login'>Log In</Link>
-        //     <Link className="btn btn-primary m-1" to='/signup'>Sign Up</Link>
-        // </div>
+      
         <div className="home">
           <Navbar/>
-      <input type="text" placeholder="検索 ...."  onChange ={event => {setSearchTerm(event.target.value)}}/>
+      <input type="text" placeholder="検索 ...."  onChange ={event => {setSearchTerm(event.target.value)} }/>
 
           <Table striped bordered hover>
           <thead>
@@ -72,23 +71,31 @@ export default function Home(){
               </tr>
               </thead>
           <tbody>
-            {
-              currentPosts.filter((val) =>{
-                if(searchTerm==""){
-                  return val;
-                }else if(val.hodem.toLowerCase().includes(searchTerm.toLowerCase())){
-                  return val;
-                }
-              }).map((item,key) =>(
+          {
+            currentPosts.filter((val) =>{
+              if(searchTerm==""){
+                return val;
+              }else if(val.name.toLowerCase().includes(searchTerm.toLowerCase())){
+                return val;
+              }
+            }).map((item,key) =>(
                 <tr key={key}>
                 <td>{item.id}</td>
-                <td>{item.hodem} {item.ten}</td>
-                <td>{item.dob}</td>
+                <td>{item.name} {item.ten}</td>
+                <td>{item.age}</td>
                 <td>{item.gioitinh}</td>
-                <td>{item.tinh}</td>
-                <td>{item.masv}</td>
-                <td>{item.malop}</td>
-                <td>action</td>
+                <td>{item.addr}</td>
+                <td>{item.mail}</td>
+                <td>{item.phoneNumber}</td>
+                <td>
+            
+                  <a href ="/suggestion"> 
+                  <button >
+                  <MdArticle/>
+
+                  </button>
+                   </a>
+                </td>
               </tr>
               ))}
           </tbody>
@@ -96,7 +103,7 @@ export default function Home(){
             <nav>
             <ul className='pagination justify-content-center'>
                 {
-                  pageNumber.map(number =>(
+                 pageNumber.map(number =>(
                     <li key={number} className='page-item'>
                       <a onClick={() => paginate(number)}  className='page-link' >
                         {number}
