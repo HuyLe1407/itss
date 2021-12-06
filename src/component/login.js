@@ -50,9 +50,9 @@ function LogIn() {
                 <Button className="text-center" variant="primary" type="submit">
                     Log in
                 </Button>
-                <p className="text-center">
-                    Create account? <Link to='/signup'>Sign up</Link>
-                </p>
+                {/*<p className="text-center">*/}
+                {/*    Create account? <Link to='/signup'>Sign up</Link>*/}
+                {/*</p>*/}
                 <p className="text-center">
                      <Link to='/forgot'>Forgot password?</Link>
                 </p>

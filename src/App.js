@@ -48,7 +48,7 @@ function App() {
                       <Nav.Link href ="/suggestion">  おすすめ商品</Nav.Link>
                   </Nav>
               </Navbar.Collapse>
-              <Navbar.Collapse className="justify-content-end">
+              <Navbar.Collapse className="justify-content-end" style={{marginRight:20}}>
                   <Button onClick={LogOut}>Logout</Button>
               </Navbar.Collapse>
           </Navbar>
