@@ -55,6 +55,7 @@ function ForgotPassword(){
                     </Button>
                     <p className="text-center">
                         <Link to='/login'>login</Link>
+                        
                     </p>
                 </Form>
             </div>
