@@ -15,7 +15,7 @@ function LogIn() {
         e.preventDefault();
         try{
             await auth.signInWithEmailAndPassword(email, pass);
-            navigate('/home');
+            navigate('/dashboard');
         }
         catch{
             setMess('Login failed!');
