@@ -53,7 +53,7 @@ export default function SuggestProduct() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
   return (
     <div className="d-flex flex-column shadow-lg p-3 m-auto mt-5" style={{ maxWidth: '1200px' }}>
-      <h1 className="text-center">製品を提案する</h1>
+      <h1 className="text-center">おすすめ商品</h1>
       <input
           type="text"
           placeholder="検索 ...."

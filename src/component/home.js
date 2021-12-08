@@ -8,7 +8,7 @@ import { MdArticle } from 'react-icons/md'
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('')
   const [currentPage, setcurrentPage] = useState(1)
-  const [postPerPage] = useState(3)
+  const [postPerPage] = useState(10)
   const [users, setUsers] = useState([])
   const [dataProduct, setDataProduct] = useState([])
   const [pageNumber, setPageNumber] = useState([])
