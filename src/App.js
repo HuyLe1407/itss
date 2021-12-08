@@ -32,27 +32,28 @@ function App() {
     <div className="App">
       <div>
           {check === true &&
-              <div>
-          <Navbar bg ="myRed" variant="dark" sticky="top" expand="lg">
-              <Navbar.Brand>
-                  {/* <img src = {logo192}/> */}
-                  ランダム
-              </Navbar.Brand>
-              <Navbar.Toggle/>
-              <Navbar.Collapse>
-                  <Nav>
-                      <Nav.Link href="/home">  ホーム</Nav.Link>
-                      <Nav.Link href ="/products">  Product</Nav.Link>
-                      <Nav.Link href ="/about"> 顧客報告</Nav.Link>
-                      <Nav.Link href ="/contact">  商品報告</Nav.Link>
-                      <Nav.Link href ="/suggestion">  おすすめ商品</Nav.Link>
-                  </Nav>
-              </Navbar.Collapse>
-              <Navbar.Collapse className="justify-content-end" style={{marginRight:20}}>
-                  <Button onClick={LogOut}>Logout</Button>
-              </Navbar.Collapse>
-          </Navbar>
-              </div>}
+              <div style={{position: "sticky",top: 0}}>
+                  <Navbar bg ="myRed" variant="dark" sticky="top" expand="lg">
+                      <Navbar.Brand style={{marginLeft:20}}>
+                          {/* <img src = {logo192}/> */}
+                          ランダム
+                      </Navbar.Brand>
+                      <Navbar.Toggle/>
+                      <Navbar.Collapse>
+                          <Nav >
+                              <Nav.Link href="/home">  ホーム</Nav.Link>
+                              <Nav.Link href ="/products">  製品</Nav.Link>
+                              {/*<Nav.Link href ="/about"> 顧客報告</Nav.Link>*/}
+                              {/*<Nav.Link href ="/contact">  商品報告</Nav.Link>*/}
+                              <Nav.Link href ="/suggestion">  おすすめ商品</Nav.Link>
+                          </Nav>
+                      </Navbar.Collapse>
+                      <Navbar.Collapse className="justify-content-end" style={{marginRight:20}}>
+                          <Button onClick={LogOut}>ログアウト</Button>
+                      </Navbar.Collapse>
+                  </Navbar>
+              </div>
+          }
           {
               <BrowserRouter>
                   <Routes>

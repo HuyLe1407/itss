@@ -7,7 +7,8 @@
     height: 3000px;
 }
 .home{
-    margin-left: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 input {
     margin-top: 20px;
@@ -35,5 +36,5 @@ table{
     background-color: rgb(166, 185, 184);
 }
 .page-link{
-   
+
 }

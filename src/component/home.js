@@ -8,8 +8,10 @@ import { MdArticle } from 'react-icons/md'
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('')
   const [currentPage, setcurrentPage] = useState(1)
-  const [postPerPage] = useState(2)
+  const [postPerPage] = useState(3)
   const [users, setUsers] = useState([])
+  const [dataProduct, setDataProduct] = useState([])
+  const [pageNumber, setPageNumber] = useState([])
 
   const navigate = useNavigate()
   useEffect(() => {
@@ -33,16 +35,28 @@ export default function Home() {
         setUsers(getUserFromFB)
       })
   }, [])
-
+  useEffect(()=>{
+    const pageNumber1 = []
+    for (let i = 1; i <= Math.ceil(dataProduct.length / postPerPage); i++) {
+      pageNumber1.push(i)
+    }
+    setPageNumber(pageNumber1);
+  },[dataProduct])
+  useEffect(()=>{
+    let dataRcv = users
+        .filter((val) => {
+          if (searchTerm == '') {
+            return val
+          } else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+            return val
+          }
+        });
+    setDataProduct(dataRcv);
+  },[searchTerm,users])
   //get currentPost
   const indexofLast = currentPage * postPerPage
   const indexofFirst = indexofLast - postPerPage
-  const currentPosts = users.slice(indexofFirst, indexofLast)
-
-  const pageNumber = []
-  for (let i = 1; i <= Math.ceil(users.length / postPerPage); i++) {
-    pageNumber.push(i)
-  }
+  const currentPosts = dataProduct.slice(indexofFirst, indexofLast)
   const paginate = (pageNumber) => setcurrentPage(pageNumber)
   return (
     <div className="home">
@@ -56,8 +70,8 @@ export default function Home() {
       />
 
       <Table striped bordered hover>
-        <thead>
-          <tr>
+        <thead >
+          <tr >
             <td>番号</td>
             <td>名前</td>
             <td>年齢</td>
@@ -70,16 +84,9 @@ export default function Home() {
         </thead>
         <tbody>
           {currentPosts
-            .filter((val) => {
-              if (searchTerm == '') {
-                return val
-              } else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-                return val
-              }
-            })
             .map((item, key) => (
               <tr key={key}>
-                <td>{item.id}</td>
+                <td>{key+1}</td>
                 <td>
                   {item.name} {item.ten}
                 </td>
@@ -88,7 +95,7 @@ export default function Home() {
                 <td>{item.addr}</td>
                 <td>{item.mail}</td>
                 <td>{item.phoneNumber}</td>
-                <td>
+                <td style={{}}>
                   <button onClick={() => navigate('/suggestion', { state: { minAgeSuggest: item.age } })}>
                     <MdArticle />
                   </button>

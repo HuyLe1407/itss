@@ -18,7 +18,7 @@ function LogIn() {
             navigate('/home');
         }
         catch{
-            setMess('Login failed!');
+            setMess('ログインに失敗しました！ もう一度やり直してください。');
         }
         setShow(true);
     }
@@ -33,28 +33,28 @@ function LogIn() {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={()=>setShow(false)}>
-                        Close
+                        クローズ
                     </Button>
                 </Modal.Footer>
             </Modal>
             <Form className="mt-4 container p-3 mx-auto shadow-lg d-flex flex-column border border-3" style={{ maxWidth: '450px' }} onSubmit={AuthLogIn}>
-                <h1 className="text-center">Log In</h1>
+                <h1 className="text-center">ログイン</h1>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email: </Form.Label>
-                    <Form.Control type="email" placeholder="Write your email ..." onChange={e => setEmail(e.target.value)} required />
+                    <Form.Label>メール: </Form.Label>
+                    <Form.Control type="email" placeholder="メールを入力してください" onChange={e => setEmail(e.target.value)} required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password: </Form.Label>
-                    <Form.Control type="password" placeholder="Write your password ..." onChange={e => setPass(e.target.value)} required />
+                    <Form.Label>パスワード: </Form.Label>
+                    <Form.Control type="password" placeholder="パスワードを入力してください" onChange={e => setPass(e.target.value)} required />
                 </Form.Group>
                 <Button className="text-center" variant="primary" type="submit">
-                    Log in
+                    ログイン
                 </Button>
                 {/*<p className="text-center">*/}
                 {/*    Create account? <Link to='/signup'>Sign up</Link>*/}
                 {/*</p>*/}
                 <p className="text-center">
-                     <Link to='/forgot'>Forgot password?</Link>
+                     <Link to='/forgot'>パスワードを忘れた？</Link>
                 </p>
             </Form>
         </div>

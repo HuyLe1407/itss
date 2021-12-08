@@ -13,7 +13,7 @@ function ForgotPassword(){
             const auth = getAuth();
             console.log(auth,email);
             await sendPasswordResetEmail(auth, email) .then(() => {
-                setMess('Password reset email sent successfully')
+                setMess('パスワードリセットメールが正常に送信されました。')
 
             })
                 .catch((error) => {
@@ -40,22 +40,22 @@ function ForgotPassword(){
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={()=>{setShow(false);navigate('/login')}}>
-                            Close
+                            クローズ
                         </Button>
                     </Modal.Footer>
                 </Modal>
                 <Form className="mt-4 container p-3 mx-auto shadow-lg d-flex flex-column border border-3" style={{ maxWidth: '450px' }} onSubmit={handlePasswordReset}>
-                    <h1 className="text-center">Forgot Password</h1>
+                    <h1 className="text-center">パスワードを忘れた</h1>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Email: </Form.Label>
-                        <Form.Control type="email" placeholder="Write your email ..." onChange={e => setEmail(e.target.value)} required />
+                        <Form.Label>メール: </Form.Label>
+                        <Form.Control type="メール" placeholder="メールを入力してください" onChange={e => setEmail(e.target.value)} required />
                     </Form.Group>
                     <Button className="text-center" variant="primary" type="submit">
-                        Send
+                        送信
                     </Button>
                     <p className="text-center">
-                        <Link to='/login'>login</Link>
-                        
+                        <Link to='/login'>ログイン</Link>
+
                     </p>
                 </Form>
             </div>
