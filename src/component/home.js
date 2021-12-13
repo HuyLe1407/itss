@@ -4,6 +4,7 @@ import { Navbar, Table } from 'react-bootstrap'
 import { auth, db } from '../firebase'
 import { Link, useNavigate } from 'react-router-dom'
 import { MdArticle } from 'react-icons/md'
+import {Button} from "reactstrap";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('')
@@ -68,7 +69,6 @@ export default function Home() {
           setSearchTerm(event.target.value)
         }}
       />
-
       <Table striped bordered hover>
         <thead >
           <tr >
@@ -77,7 +77,7 @@ export default function Home() {
             <td>年齢</td>
             <td>性別</td>
             <td>場所</td>
-            <td>メール</td>
+            {/*<td>メール</td>*/}
             <td>電話番号</td>
             <td>アクション</td>
           </tr>
@@ -88,15 +88,15 @@ export default function Home() {
               <tr key={key}>
                 <td>{key+1}</td>
                 <td>
-                  {item.name} {item.ten}
+                  {item.Name}
                 </td>
-                <td>{item.age}</td>
-                <td>{item.gioitinh}</td>
-                <td>{item.addr}</td>
-                <td>{item.mail}</td>
-                <td>{item.phoneNumber}</td>
+                <td>{item.Age}</td>
+                <td>{item.Gender}</td>
+                <td>{item.Address}</td>
+                {/*<td>{item.mail}</td>*/}
+                <td>{item.PhoneNumber}</td>
                 <td style={{}}>
-                  <button onClick={() => navigate('/suggestion', { state: { minAgeSuggest: item.age } })}>
+                  <button onClick={() => navigate('/suggestion', { state: { minAgeSuggest: item.Age,Name:item.Name,ID:item.ID } })}>
                     <MdArticle />
                   </button>
                 </td>

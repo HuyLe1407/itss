@@ -13,10 +13,12 @@ export default function SuggestProduct() {
   const [searchTerm, setSearchTerm] = useState('')
   const [pageNumber, setPageNumber] = useState([])
   const [dataProduct, setDataProduct] = useState([])
+  const [dataProductID, setDataProductID] = useState([])
   const [renderData, setRenderData] = useState([])
 
   useEffect(() => {
     const productsData = []
+    const productMapData = []
     db.collection('products')
       .get()
       .then((querySnapshot) => {
@@ -25,13 +27,27 @@ export default function SuggestProduct() {
         })
         setDataProduct(productsData)
       })
+    db.collection('productSuggestions')
+        .where("CustomerID","==",location.state.ID)
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            console.log(doc.data().ProductID);
+            productMapData.push(doc.data().ProductID);
+          })
+          setDataProductID(productMapData);
+
+        })
+
   }, [])
 
   useEffect(() => {
-    if (location.state?.minAgeSuggest) {
-      setRenderData(dataProduct.filter((data) => data.minAgeSuggest >= location.state.minAgeSuggest))
+    if (dataProductID.length>0) {
+      console.log(dataProductID)
+      setRenderData(dataProduct.filter((data) => dataProductID.includes(data.key)))
     } else setRenderData(dataProduct)
-  }, [dataProduct])
+    console.log("121",dataProductID,dataProduct,renderData)
+  }, [dataProduct,dataProductID])
 
   useEffect(() => {
     //Check user is logined
@@ -70,7 +86,8 @@ export default function SuggestProduct() {
 
   return (
     <div className="d-flex flex-column shadow-lg p-3 m-auto mt-5" style={{ maxWidth: '1200px' }}>
-      <h1 className="text-center">おすすめ商品</h1>
+      <h1 className="text-center">{location.state.Name}さんためのおすすめ商品のリストはこちら
+      </h1>
       <input
         type="text"
         placeholder="検索 ...."

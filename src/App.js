@@ -10,6 +10,7 @@ import {Button, Nav, Navbar} from 'react-bootstrap';
 import SuggestProduct from './component/suggestion'
 import Products from './component/products';
 import {auth} from "./firebase";
+import TotalProduct from "./component/TotalProduct";
 
 
 function App() {
@@ -42,10 +43,11 @@ function App() {
                       <Navbar.Collapse>
                           <Nav >
                               <Nav.Link href="/home">  ホーム</Nav.Link>
-                              <Nav.Link href ="/products">  製品</Nav.Link>
+                              <Nav.Link href ="/statistics">  統計</Nav.Link>
                               {/*<Nav.Link href ="/about"> 顧客報告</Nav.Link>*/}
                               {/*<Nav.Link href ="/contact">  商品報告</Nav.Link>*/}
-                              <Nav.Link href ="/suggestion">  おすすめ商品</Nav.Link>
+                              {/*<Nav.Link href ="/suggestion">  おすすめ商品</Nav.Link>*/}
+                              <Nav.Link href ="/totalProduct">  すべての製品</Nav.Link>
                           </Nav>
                       </Navbar.Collapse>
                       <Navbar.Collapse className="justify-content-end" style={{marginRight:20}}>
@@ -64,6 +66,7 @@ function App() {
                       <Route path='/forgot' element={<ForgotPassword/>}/>
                       <Route path='/home' element={<Home/>}/>
                       <Route path="/suggestion" element={<SuggestProduct/>}/>
+                      <Route path="/totalProduct" element={<TotalProduct/>}/>
                       <Route path='/' element={<LogIn/>}/>
                   </Routes>
               </BrowserRouter>
