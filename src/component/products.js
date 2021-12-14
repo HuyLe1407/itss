@@ -22,7 +22,8 @@ const cubejsApi = cubejs(process.env.REACT_APP_CUBEJS_TOKEN, {
   apiUrl: process.env.REACT_APP_API_URL
 });
 const numberFormatter = (item) => numeral(item).format("0,0");
-const dateFormatter = (item, index) => moment(index+1, 'M').format("MMM YY");;
+const dateFormatter = (item, index) => moment(index + 1, 'M').format('MM');
+const labelFormatter = (item, index) => { console.log(index[0]) };
 
 const renderSingleValue = (data) => (
   <h1 height={300}>{numberFormatter(data)}</h1>
@@ -156,7 +157,7 @@ export default function Products() {
                 <AreaChart data={resultSet.chartPivot()}>
                   <XAxis dataKey="category" tickFormatter={dateFormatter} />
                   <YAxis tickFormatter={numberFormatter} />
-                  <Tooltip labelFormatter={dateFormatter} />
+                  <Tooltip />
                   <Area
                     type="monotone"
                     dataKey="Users.count"
@@ -182,6 +183,22 @@ export default function Products() {
               </Pie>
             </PieChart>
           </ResponsiveContainer>
+          <Row className="pb-2 label-group">
+            <Col className="center-block" align="center">
+              <div >
+                <div className="male">
+                  <span>Male</span>
+                </div>
+              </div>
+            </Col>
+            <Col className="center-block" align="center">
+              <div>
+                <div className="female">
+                  <span>Female</span>
+                </div>
+              </div>
+            </Col>
+          </Row>
         </Col>
       </Row>
     </Container>
