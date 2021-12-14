@@ -52,3 +52,16 @@ table{
 .navbar-collapse > button {
     margin-left: 20px;
 }
+.male {
+    width: 70px;
+    background-color: #0088FE;
+    text-align: center;
+}
+.female {
+    width: 70px;
+    text-align: center;
+    background-color: #00C49F;
+}
+.label-group {
+    display: flex;
+}
