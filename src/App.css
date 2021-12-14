@@ -35,6 +35,20 @@ table{
 .pageNumbers li:hover{
     background-color: rgb(166, 185, 184);
 }
-.page-link{
-
+.navbar-nav > a {
+    margin-left: 20px;
+}
+.btn {
+    margin-bottom: 10px;
+}
+.pie-chart {
+    border: 1px solid rgb(224, 222, 222);
+    border-radius: 0.25rem;
+    max-width: calc(50vw - 12px);
+}
+.pie-header {
+    padding-top: 16px;
+}
+.navbar-collapse > button {
+    margin-left: 20px;
 }
