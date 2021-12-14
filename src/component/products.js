@@ -22,7 +22,7 @@ const cubejsApi = cubejs(process.env.REACT_APP_CUBEJS_TOKEN, {
   apiUrl: process.env.REACT_APP_API_URL
 });
 const numberFormatter = (item) => numeral(item).format("0,0");
-const dateFormatter = (item, index) => moment(index+1, 'M').format("MMM YY¥");;
+const dateFormatter = (item, index) => moment(index+1, 'M').format("MMM YY");;
 
 const renderSingleValue = (data) => (
   <h1 height={300}>{numberFormatter(data)}</h1>
