@@ -69,7 +69,7 @@ export default function SuggestProduct() {
 
   useEffect(() => {
     let dataRcv = dataProduct.filter((val) => {
-      if (searchTerm == '') {
+      if (searchTerm === '') {
         return val
       } else if (val.productName.toLowerCase().includes(searchTerm.toLowerCase())) {
         return val

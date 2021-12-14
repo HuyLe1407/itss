@@ -46,7 +46,7 @@ export default function Home() {
   useEffect(()=>{
     let dataRcv = users
         .filter((val) => {
-          if (searchTerm == '') {
+          if (searchTerm === '') {
             return val
           } else if (val.Name.toLowerCase().includes(searchTerm.toLowerCase())) {
             return val
