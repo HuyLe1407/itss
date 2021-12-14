@@ -79,7 +79,7 @@ export default function Home() {
             <td>場所</td>
             {/*<td>メール</td>*/}
             <td>電話番号</td>
-            <td>アクション</td>
+            <td>おすすめ商品を見る</td>
           </tr>
         </thead>
         <tbody>
