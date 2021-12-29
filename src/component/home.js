@@ -4,9 +4,6 @@ import { Navbar, Table } from 'react-bootstrap'
 import { auth, db } from '../firebase'
 import { Link, useNavigate } from 'react-router-dom'
 import { MdArticle } from 'react-icons/md'
-import {Button} from "reactstrap";
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('')
   const [searchGender, setSearchGender] = useState('')
