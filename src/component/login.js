@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { auth } from '../firebase';
 import { Link, useNavigate } from 'react-router-dom';
 import { Form, Button, Modal } from 'react-bootstrap';
@@ -22,6 +22,16 @@ function LogIn() {
         }
         setShow(true);
     }
+    useEffect(() => {
+        //Check user is logined
+        auth.onAuthStateChanged((user) => {
+            if (user != null) {
+                navigate('/home')
+            } else {
+
+            }
+        })
+    }, [])
     return (
         <div>
             <Modal show={show} onHide={()=>setShow(false)}>

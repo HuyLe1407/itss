@@ -11,6 +11,7 @@ export default function TotalProduct() {
     const location = useLocation()
     const [currentPage, setCurrentPage] = useState(1)
     const [searchTerm, setSearchTerm] = useState('')
+    const [searchCategory, setSearchCategory] = useState('')
     const [pageNumber, setPageNumber] = useState([])
     const [dataProduct, setDataProduct] = useState([])
     const [renderData, setRenderData] = useState([])
@@ -57,8 +58,15 @@ export default function TotalProduct() {
                 return val
             }
         })
+        dataRcv = dataRcv.filter((val) => {
+            if (searchCategory == '') {
+                return val
+            } else if (val.productNumber.toLowerCase().includes(searchCategory.toLowerCase())) {
+                return val
+            }
+        })
         setRenderData(dataRcv)
-    }, [searchTerm])
+    }, [searchTerm,searchCategory])
 
     //get currentPost
     const indexofLast = currentPage * postPerPage
@@ -69,13 +77,23 @@ export default function TotalProduct() {
     return (
         <div className="d-flex flex-column shadow-lg p-3 m-auto mt-5" style={{ maxWidth: '1200px' }}>
             <h1 className="text-center">おすすめ商品</h1>
+            <div>
             <input
+                style={{marginRight:10}}
                 type="text"
                 placeholder="検索 ...."
                 onChange={(event) => {
                     setSearchTerm(event.target.value)
                 }}
             />
+            <input
+                type="text"
+                placeholder="Category ...."
+                onChange={(event) => {
+                    setSearchCategory(event.target.value)
+                }}
+            />
+            </div>
             <Container>
                 <Row className="d-flex align-items-center mt-4">
                     {currentPosts.map((product) => (

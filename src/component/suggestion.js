@@ -11,6 +11,7 @@ export default function SuggestProduct() {
   const location = useLocation()
   const [currentPage, setCurrentPage] = useState(1)
   const [searchTerm, setSearchTerm] = useState('')
+  const [searchCategory, setSearchCategory] = useState('')
   const [pageNumber, setPageNumber] = useState([])
   const [dataProduct, setDataProduct] = useState([])
   const [dataProductID, setDataProductID] = useState([])
@@ -75,8 +76,15 @@ export default function SuggestProduct() {
         return val
       }
     })
+    dataRcv = dataRcv.filter((val) => {
+      if (searchCategory === '') {
+        return val
+      } else if (val.productNumber.toLowerCase().includes(searchCategory.toLowerCase())) {
+        return val
+      }
+    })
     setRenderData(dataRcv)
-  }, [searchTerm])
+  }, [searchTerm,searchCategory])
 
   //get currentPost
   const indexofLast = currentPage * postPerPage
@@ -88,13 +96,23 @@ export default function SuggestProduct() {
     <div className="d-flex flex-column shadow-lg p-3 m-auto mt-5" style={{ maxWidth: '1200px' }}>
       <h1 className="text-center">{location.state.Name}さんためのおすすめ商品のリストはこちら
       </h1>
-      <input
-        type="text"
-        placeholder="検索 ...."
-        onChange={(event) => {
-          setSearchTerm(event.target.value)
-        }}
-      />
+      <div>
+        <input
+            style={{marginRight:10}}
+            type="text"
+            placeholder="検索 ...."
+            onChange={(event) => {
+              setSearchTerm(event.target.value)
+            }}
+        />
+        <input
+            type="text"
+            placeholder="Category ...."
+            onChange={(event) => {
+              setSearchCategory(event.target.value)
+            }}
+        />
+      </div>
       <Container>
         <Row className="d-flex align-items-center mt-4">
           {currentPosts.map((product) => (
