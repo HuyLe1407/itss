@@ -79,7 +79,7 @@ export default function SuggestProduct() {
     dataRcv = dataRcv.filter((val) => {
       if (searchCategory === '') {
         return val
-      } else if (val.productNumber.toLowerCase().includes(searchCategory.toLowerCase())) {
+      } else if (val.productEnglishName.toLowerCase().includes(searchCategory.toLowerCase())) {
         return val
       }
     })
@@ -107,7 +107,7 @@ export default function SuggestProduct() {
         />
         <input
             type="text"
-            placeholder="Category ...."
+            placeholder="Tag ...."
             onChange={(event) => {
               setSearchCategory(event.target.value)
             }}

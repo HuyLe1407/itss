@@ -6,6 +6,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { MdArticle } from 'react-icons/md'
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('')
+  const [searchStartAge, setSearchStartDate] = useState('')
+  const [searchEndAge, setSearchEndDate] = useState('')
   const [searchGender, setSearchGender] = useState('')
   const [searchAge, setSearchAge] = useState('')
   const [currentPage, setcurrentPage] = useState(1)
@@ -65,25 +67,25 @@ export default function Home() {
           });
       dataRcv = dataRcv
           .filter((val) => {
-              if (searchAge === '') {
+              if (searchStartAge === '' && searchEndAge === '') {
                   return val
-              } else if (searchAge==1) {
+              } else if (searchStartAge== '' && searchEndAge!='') {
                   console.log(parseInt(val.Age))
-                  if(1<=parseInt(val.Age)&&parseInt(val.Age)<20) {
+                  if(parseInt(val.Age)<=parseInt(searchEndAge)) {
                       return val
                   }
-              }else if (searchAge==2) {
-                  if(20<=parseInt(val.Age)&&parseInt(val.Age)<40) {
+              }else if (searchStartAge!='' && searchEndAge== '') {
+                  if(parseInt(searchStartAge)<=parseInt(val.Age)) {
                       return val
                   }
-              }else if (searchAge==3) {
-                  if(40<=parseInt(val.Age)&&parseInt(val.Age)<60) {
+              }else if (searchStartAge!= '' && searchEndAge!='') {
+                  if(parseInt(searchStartAge)<=parseInt(val.Age)&&parseInt(val.Age)<parseInt(searchEndAge)) {
                       return val
                   }
               }
           });
     setDataProduct(dataRcv);
-  },[searchTerm,searchAge,searchGender,users])
+  },[searchTerm,searchAge,searchGender,users,searchStartAge,searchEndAge])
   //get currentPost
   const indexofLast = currentPage * postPerPage
   const indexofFirst = indexofLast - postPerPage
@@ -93,6 +95,7 @@ export default function Home() {
     <div className="home">
       <Navbar />
         <div style={{display:'flex',flexDirection:'row'}}>
+            <div style={{alignItems:'center',justifyContent:'center',display:'flex',marginTop:18,marginRight:5,fontWeight:'bold'}}>Name</div>
       <input style={{width:'20%',marginRight:10}}
         type="text"
         placeholder="検索 ...."
@@ -100,17 +103,28 @@ export default function Home() {
           setSearchTerm(event.target.value)
         }}
       />
+            <div style={{alignItems:'center',justifyContent:'center',display:'flex',marginTop:18,marginRight:5,fontWeight:'bold'}}>Gender</div>
             <select style={{marginTop:19,width:'20%',marginRight:10}} value={searchGender} onChange={(e)=>{setSearchGender(e.target.value)}}>
                 <option value="">全部</option>
                 <option value="male">男性</option>
                 <option value="female">女性</option>
             </select>
-            <select style={{marginTop:19,width:'20%'}} value={searchAge} onChange={(e)=>{setSearchAge(e.target.value)}}>
-                <option value="">全部</option>
-                <option value="1">1-20</option>
-                <option value="2">20-40</option>
-                <option value="3">40-60</option>
-            </select>
+            <div style={{alignItems:'center',justifyContent:'center',display:'flex',marginTop:18,marginRight:5,fontWeight:'bold'}}>Age From</div>
+            <input style={{width:'10%',marginRight:10}}
+                   type="text"
+                   placeholder="検索 ...."
+                   onChange={(event) => {
+                       setSearchStartDate(event.target.value)
+                   }}
+            />
+            <div style={{alignItems:'center',justifyContent:'center',display:'flex',marginTop:18,marginRight:5,fontWeight:'bold'}}>To</div>
+            <input style={{width:'10%',marginRight:10}}
+                   type="text"
+                   placeholder="検索 ...."
+                   onChange={(event) => {
+                       setSearchEndDate(event.target.value)
+                   }}
+            />
         </div>
       <Table striped bordered hover>
         <thead >

@@ -61,7 +61,7 @@ export default function TotalProduct() {
         dataRcv = dataRcv.filter((val) => {
             if (searchCategory == '') {
                 return val
-            } else if (val.productNumber.toLowerCase().includes(searchCategory.toLowerCase())) {
+            } else if (val.productEnglishName.toLowerCase().includes(searchCategory.toLowerCase())) {
                 return val
             }
         })
@@ -88,7 +88,7 @@ export default function TotalProduct() {
             />
             <input
                 type="text"
-                placeholder="Category ...."
+                placeholder="Tag ...."
                 onChange={(event) => {
                     setSearchCategory(event.target.value)
                 }}
