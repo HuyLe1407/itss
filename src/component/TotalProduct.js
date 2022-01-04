@@ -77,7 +77,8 @@ export default function TotalProduct() {
     return (
         <div className="d-flex flex-column shadow-lg p-3 m-auto mt-5" style={{ maxWidth: '1200px' }}>
             <h1 className="text-center">おすすめ商品</h1>
-            <div>
+            <div style={{display:'flex',flexDirection:'row'}}>
+                <div style={{alignItems:'center',justifyContent:'center',display:'flex',marginTop:18,marginRight:5,fontWeight:'bold',fontSize:20}}>Name</div>
             <input
                 style={{marginRight:10}}
                 type="text"
@@ -86,6 +87,7 @@ export default function TotalProduct() {
                     setSearchTerm(event.target.value)
                 }}
             />
+                <div style={{alignItems:'center',justifyContent:'center',display:'flex',marginTop:18,marginRight:5,fontWeight:'bold',fontSize:20}}>Tag</div>
             <input
                 type="text"
                 placeholder="Tag ...."

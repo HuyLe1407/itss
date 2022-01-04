@@ -95,7 +95,7 @@ export default function Home() {
     <div className="home">
       <Navbar />
         <div style={{display:'flex',flexDirection:'row'}}>
-            <div style={{alignItems:'center',justifyContent:'center',display:'flex',marginTop:18,marginRight:5,fontWeight:'bold'}}>Name</div>
+            <div style={{alignItems:'center',justifyContent:'center',display:'flex',marginTop:18,marginRight:5,fontWeight:'bold',fontSize:20}}>Name</div>
       <input style={{width:'20%',marginRight:10}}
         type="text"
         placeholder="検索 ...."
@@ -103,13 +103,13 @@ export default function Home() {
           setSearchTerm(event.target.value)
         }}
       />
-            <div style={{alignItems:'center',justifyContent:'center',display:'flex',marginTop:18,marginRight:5,fontWeight:'bold'}}>Gender</div>
+            <div style={{alignItems:'center',justifyContent:'center',display:'flex',marginTop:18,marginRight:5,fontWeight:'bold',fontSize:20}}>Gender</div>
             <select style={{marginTop:19,width:'20%',marginRight:10}} value={searchGender} onChange={(e)=>{setSearchGender(e.target.value)}}>
                 <option value="">全部</option>
                 <option value="male">男性</option>
                 <option value="female">女性</option>
             </select>
-            <div style={{alignItems:'center',justifyContent:'center',display:'flex',marginTop:18,marginRight:5,fontWeight:'bold'}}>Age From</div>
+            <div style={{alignItems:'center',justifyContent:'center',display:'flex',marginTop:18,marginRight:5,fontWeight:'bold',fontSize:20}}>Age From</div>
             <input style={{width:'10%',marginRight:10}}
                    type="text"
                    placeholder="検索 ...."
@@ -117,7 +117,7 @@ export default function Home() {
                        setSearchStartDate(event.target.value)
                    }}
             />
-            <div style={{alignItems:'center',justifyContent:'center',display:'flex',marginTop:18,marginRight:5,fontWeight:'bold'}}>To</div>
+            <div style={{alignItems:'center',justifyContent:'center',display:'flex',marginTop:18,marginRight:5,fontWeight:'bold',fontSize:20}}>To</div>
             <input style={{width:'10%',marginRight:10}}
                    type="text"
                    placeholder="検索 ...."
