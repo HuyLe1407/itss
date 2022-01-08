@@ -41,6 +41,10 @@ table{
 .btn {
     margin-bottom: 10px;
 }
+.gender-row {
+    padding: 0 12px 0 12px;
+    margin-right: 12px !important;
+}
 .pie-chart {
     border: 1px solid rgb(224, 222, 222);
     border-radius: 0.25rem;
