@@ -10,6 +10,8 @@ import {
   PieChart,
   Pie,
   Cell,
+  Bar,
+  BarChart
 } from "recharts";
 import moment from "moment";
 import numeral from "numeral";
@@ -23,7 +25,6 @@ const cubejsApi = cubejs(process.env.REACT_APP_CUBEJS_TOKEN, {
 });
 const numberFormatter = (item) => numeral(item).format("0,0");
 const dateFormatter = (item, index) => moment(index + 1, 'M').format('MM');
-const labelFormatter = (item, index) => { console.log(index[0]) };
 
 const renderSingleValue = (data) => (
   <h1 height={300}>{numberFormatter(data)}</h1>
@@ -34,25 +35,25 @@ export default function Products() {
   const [orders, setOrders] = useState([]);
   const [products, setProducts] = useState([]);
   const [gender, setGender] = useState([]);
+  const [ordersInMonth, setOrderInMonth] = useState([]);
   const navigate = useNavigate();
   const COLORS = ['#0088FE', '#00C49F'];
 
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN) + 7;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
     const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
     return (
       <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-        {`${gender[index].name}, ${(percent * 100).toFixed(0)}%`}
+        {`${(percent * 100).toFixed(0)}%`}
       </text>
     );
   };
 
   useEffect(() => {
     const temp = [];
-    const tempOrder = [];
     const tempProducts = [];
     const tempGender = [{ name: 'Male', value: 0 },
     { name: 'Female', value: 0 }];
@@ -71,14 +72,6 @@ export default function Products() {
         setUsers(temp)
         setGender(tempGender)
       })
-    db.collection('customersBuy')
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          tempOrder.push({ ...doc.data(), key: doc.id })
-        })
-        setOrders(tempOrder)
-      })
     db.collection('products')
       .get()
       .then((querySnapshot) => {
@@ -86,6 +79,27 @@ export default function Products() {
           tempProducts.push({ ...doc.data(), key: doc.id })
         })
         setProducts(tempProducts)
+      })
+  }, [])
+
+  useEffect(() => {
+    const tempOrder = [];
+    const months = [{ month: '1', quantity: 0 }, { month: '2', quantity: 0 }, { month: '3', quantity: 0 }, { month: '4', quantity: 0 },
+    { month: '5', quantity: 0 }, { month: '6', quantity: 0 }, { month: '7', quantity: 0 },
+    { month: '8', quantity: 0 }, { month: '9', quantity: 0 }, { month: '10', quantity: 0 },
+    { month: '11', quantity: 0 }, { month: '12', quantity: 0 }]
+    db.collection('customersBuy')
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          tempOrder.push({ ...doc.data(), key: doc.id })
+        })
+        setOrders(tempOrder)
+        tempOrder.forEach((order) => {
+          const index = order['BuyDate'].split('/')[0];
+          months[`${index - 1}`].quantity += 1;
+        })
+        setOrderInMonth(months);
       })
   }, [])
 
@@ -170,6 +184,29 @@ export default function Products() {
             )}
           />
         </Col>
+        <Col sm="6">
+          <Chart
+            cubejsApi={cubejsApi}
+            query={{
+              measures: ["Orders.count"],
+            }}
+            title="New Order Over Time"
+            render={() => (
+              <ResponsiveContainer width="100%" height="100%">
+                <XAxis dataKey="month" />
+                <YAxis />
+                <Tooltip />
+                <BarChart data={ordersInMonth}>
+                  <Bar dataKey="quantity" fill="#8884d8" />
+                </BarChart>
+              </ResponsiveContainer>
+            )}
+          />
+        </Col>
+      </Row>
+      <br />
+      <br />
+      <Row className="gender-row">
         <Col sm="6" className="pie-chart">
           <div className="pie-header">
             <h5>Gender Percentage</h5>
