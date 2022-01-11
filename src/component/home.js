@@ -7,12 +7,15 @@ import { MdArticle } from 'react-icons/md'
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('')
   const [searchStartAge, setSearchStartDate] = useState('')
+  const [searchStartOrder, setSearchStartOrder] = useState('')
   const [searchEndAge, setSearchEndDate] = useState('')
+  const [searchEndOrder, setSearchEndOrder] = useState('')
   const [searchGender, setSearchGender] = useState('')
   const [searchAge, setSearchAge] = useState('')
   const [currentPage, setcurrentPage] = useState(1)
   const [postPerPage] = useState(10)
   const [users, setUsers] = useState([])
+  const [productsBuy, setProductsBuy] = useState([])
   const [dataProduct, setDataProduct] = useState([])
   const [pageNumber, setPageNumber] = useState([])
     const options = [
@@ -32,6 +35,7 @@ export default function Home() {
 
   useEffect(() => {
     const getUserFromFB = []
+    const getProducts = []
     db.collection('users')
       .get()
       .then((querySnapshot) => {
@@ -40,6 +44,15 @@ export default function Home() {
         })
         setUsers(getUserFromFB)
       })
+      db.collection('customersBuy')
+          .get()
+          .then((querySnapshot) => {
+              querySnapshot.forEach((doc) => {
+
+                  getProducts.push({ ...doc.data(), key: doc.id })
+              })
+              setProductsBuy(getProducts)
+          })
   }, [])
   useEffect(()=>{
     const pageNumber1 = []
@@ -84,27 +97,65 @@ export default function Home() {
                   }
               }
           });
+      dataRcv = dataRcv
+          .filter((val) => {
+              if (searchStartOrder === '' && searchEndOrder === '') {
+                  return val
+              } else if (searchStartOrder== '' && searchEndOrder!='') {
+                  let dataBuy = 0;
+                  productsBuy.map(i=>{
+                      if(val.ID == i.CustomerId)
+                          dataBuy = dataBuy + parseInt(i.Quantily)
+                  })
+                  if(dataBuy<=parseInt(searchEndOrder)) {
+                      return val
+                  }
+              }else if (searchStartOrder!='' && searchEndOrder== '') {
+
+                  let dataBuy = 0;
+                  productsBuy.map(i=>{
+                      if(val.ID == i.CustomerId) {
+                          dataBuy = dataBuy + parseInt(i.Quantily)
+                      }
+                  })
+                          if(parseInt(searchStartOrder)<=dataBuy) {
+                              return val
+                          }
+
+
+              }else if (searchStartOrder!= '' && searchEndOrder!='') {
+                  let dataBuy = 0;
+                  productsBuy.map(i=>{
+                      if(val.ID == i.CustomerId)
+                          dataBuy = dataBuy + parseInt(i.Quantily)
+                  })
+                  if(parseInt(searchStartOrder)<=dataBuy&&dataBuy<parseInt(searchEndOrder)) {
+                      return val
+                  }
+              }
+          });
     setDataProduct(dataRcv);
-  },[searchTerm,searchAge,searchGender,users,searchStartAge,searchEndAge])
+  },[searchTerm,searchAge,searchGender,users,searchStartAge,searchEndAge,searchStartOrder,searchEndOrder])
   //get currentPost
   const indexofLast = currentPage * postPerPage
   const indexofFirst = indexofLast - postPerPage
   const currentPosts = dataProduct.slice(indexofFirst, indexofLast)
   const paginate = (pageNumber) => setcurrentPage(pageNumber)
+
   return (
     <div className="home">
       <Navbar />
         <div style={{display:'flex',flexDirection:'row'}}>
             <div style={{alignItems:'center',justifyContent:'center',display:'flex',marginTop:18,marginRight:5,fontWeight:'bold',fontSize:20}}>Name</div>
-      <input style={{width:'20%',marginRight:10}}
-        type="text"
-        placeholder="検索 ...."
-        onChange={(event) => {
-          setSearchTerm(event.target.value)
-        }}
-      />
+              <input style={{width:'10%',marginRight:10}}
+                type="text"
+                placeholder="検索 ...."
+                onChange={(event) => {
+                  setSearchTerm(event.target.value)
+                }}
+              />
             <div style={{alignItems:'center',justifyContent:'center',display:'flex',marginTop:18,marginRight:5,fontWeight:'bold',fontSize:20}}>Gender</div>
-            <select style={{marginTop:19,width:'20%',marginRight:10}} value={searchGender} onChange={(e)=>{setSearchGender(e.target.value)}}>
+            <select style={{marginTop:19,width:'10%',marginRight:10}} value={searchGender} onChange={(e)=>{setSearchGender(e.target.value)}}>
                 <option value="">全部</option>
                 <option value="male">男性</option>
                 <option value="female">女性</option>
@@ -123,6 +174,22 @@ export default function Home() {
                    placeholder="検索 ...."
                    onChange={(event) => {
                        setSearchEndDate(event.target.value)
+                   }}
+            />
+            <div style={{alignItems:'center',justifyContent:'center',display:'flex',marginTop:18,marginRight:5,fontWeight:'bold',fontSize:20}}>Order From</div>
+            <input style={{width:'10%',marginRight:10}}
+                   type="text"
+                   placeholder="検索 ...."
+                   onChange={(event) => {
+                       setSearchStartOrder(event.target.value)
+                   }}
+            />
+            <div style={{alignItems:'center',justifyContent:'center',display:'flex',marginTop:18,marginRight:5,fontWeight:'bold',fontSize:20}}>To</div>
+            <input style={{width:'10%',marginRight:10}}
+                   type="text"
+                   placeholder="検索 ...."
+                   onChange={(event) => {
+                       setSearchEndOrder(event.target.value)
                    }}
             />
         </div>
@@ -151,9 +218,9 @@ export default function Home() {
                 <td>{item.Gender}</td>
                 <td>{item.Address}</td>
                 {/*<td>{item.mail}</td>*/}
-                <td>{item.PhoneNumber}</td>
+                <td>{item['Phone Number']}</td>
                 <td style={{}}>
-                  <button onClick={() => navigate('/suggestion', { state: { minAgeSuggest: item.Age,Name:item.Name,ID:item.ID } })}>
+                  <button onClick={() => navigate('/suggestion', { state: { minAgeSuggest: item.Age,Name:item.Name,ID:item.ID,Gender:item.Gender } })}>
                     <MdArticle />
                   </button>
                 </td>

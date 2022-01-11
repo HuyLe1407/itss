@@ -16,6 +16,7 @@ export default function SuggestProduct() {
   const [dataProduct, setDataProduct] = useState([])
   const [dataProductID, setDataProductID] = useState([])
   const [renderData, setRenderData] = useState([])
+  const [tag, getTag] = useState([])
 
   useEffect(() => {
     const productsData = []
@@ -39,17 +40,35 @@ export default function SuggestProduct() {
           setDataProductID(productMapData);
 
         })
-
+    const tagData = []
+    db.collection('tags')
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            tagData.push({ ...doc.data(), key: doc.id })
+          })
+          getTag(tagData)
+        })
   }, [])
 
   useEffect(() => {
     if (dataProductID.length>0) {
       console.log(dataProductID)
-      setRenderData(dataProduct.filter((data) => dataProductID.includes(data.key)))
+      setRenderData(dataProduct.filter((data) =>checkData(data)))
     } else setRenderData(dataProduct)
-    console.log("121",dataProductID,dataProduct,renderData)
-  }, [dataProduct,dataProductID])
-
+  }, [dataProduct,dataProductID,tag])
+ const checkData = (data) =>{
+    let check = false
+   tag.map(i=>{
+     if(i.TagName == data.Tag){
+       console.log(parseInt(location.state.minAgeSuggest),parseInt(i.MinAge) ,parseInt(i.MaxAge),location.state.Gender,i.Gender )
+       if(parseInt(location.state.minAgeSuggest)>=parseInt(i.MinAge) && parseInt(location.state.minAgeSuggest) <=  parseInt(i.MaxAge) && location.state.Gender == i.Gender ){
+         check = true;
+       }
+     }
+   })
+   return check
+ }
   useEffect(() => {
     //Check user is logined
     auth.onAuthStateChanged((user) => {
@@ -69,7 +88,7 @@ export default function SuggestProduct() {
   }, [renderData])
 
   useEffect(() => {
-    let dataRcv = dataProduct.filter((val) => {
+    let dataRcv = renderData.filter((val) => {
       if (searchTerm === '') {
         return val
       } else if (val.productName.toLowerCase().includes(searchTerm.toLowerCase())) {
@@ -77,9 +96,9 @@ export default function SuggestProduct() {
       }
     })
     dataRcv = dataRcv.filter((val) => {
-      if (searchCategory === '') {
+      if (searchCategory == '') {
         return val
-      } else if (val.productEnglishName.toLowerCase().includes(searchCategory.toLowerCase())) {
+      } else if (val.Tag == searchCategory) {
         return val
       }
     })
@@ -107,23 +126,25 @@ export default function SuggestProduct() {
             }}
         />
         <div style={{alignItems:'center',justifyContent:'center',display:'flex',marginTop:18,marginRight:5,fontWeight:'bold',fontSize:20}}>Tag</div>
-        <input
-            type="text"
-            placeholder="Tag ...."
-            onChange={(event) => {
-              setSearchCategory(event.target.value)
-            }}
-        />
+        <select style={{marginTop:19,width:'30%',marginRight:10}} value={searchCategory} onChange={(e)=>{setSearchCategory(e.target.value)}}>
+          <option value="">全部</option>
+          {
+            tag.map(i=>{
+              return <option value={i.TagName}>{i.TagName}</option>
+            })
+          }
+
+        </select>
       </div>
       <Container>
         <Row className="d-flex align-items-center mt-4">
           {currentPosts.map((product) => (
             <Col key={product.key} md={12} lg={6} className="d-flex align-items-center mb-4">
-              <img src={product.image} alt="product" />
+              <img src={product.Image} alt="product" />
               <div className="d-flex flex-column" style={{ marginLeft: '16px' }}>
-                <h2>{product.productName}</h2>
-                <h4>{product.productPrice} $</h4>
-                <p>Category: {product.productNumber}</p>
+                <h2>{product.ProductName}</h2>
+                <h4>{product.ProductPrice} $</h4>
+                <p>Category: {product.ProductNumber}</p>
               </div>
             </Col>
           ))}
