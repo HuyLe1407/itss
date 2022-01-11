@@ -54,9 +54,7 @@ export default function Products() {
 
   useEffect(() => {
     const temp = [];
-    const tempOrder = [];
     const tempProducts = [];
-    const tempOrderByMonth = [];
     const tempGender = [{ name: 'Male', value: 0 },
     { name: 'Female', value: 0 }];
     db.collection('users')
@@ -74,22 +72,6 @@ export default function Products() {
         setUsers(temp)
         setGender(tempGender)
       })
-    db.collection('orderInMonth')
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          tempOrderByMonth.push({ ...doc.data(), key: doc.id })
-        })
-        setOrderInMonth(tempOrderByMonth)
-      })
-    db.collection('customersBuy')
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          tempOrder.push({ ...doc.data(), key: doc.id })
-        })
-        setOrders(tempOrder)
-      })
     db.collection('products')
       .get()
       .then((querySnapshot) => {
@@ -97,6 +79,27 @@ export default function Products() {
           tempProducts.push({ ...doc.data(), key: doc.id })
         })
         setProducts(tempProducts)
+      })
+  }, [])
+
+  useEffect(() => {
+    const tempOrder = [];
+    const months = [{ month: '1', quantity: 0 }, { month: '2', quantity: 0 }, { month: '3', quantity: 0 }, { month: '4', quantity: 0 },
+    { month: '5', quantity: 0 }, { month: '6', quantity: 0 }, { month: '7', quantity: 0 },
+    { month: '8', quantity: 0 }, { month: '9', quantity: 0 }, { month: '10', quantity: 0 },
+    { month: '11', quantity: 0 }, { month: '12', quantity: 0 }]
+    db.collection('customersBuy')
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          tempOrder.push({ ...doc.data(), key: doc.id })
+        })
+        setOrders(tempOrder)
+        tempOrder.forEach((order) => {
+          const index = order['BuyDate'].split('/')[0];
+          months[`${index - 1}`].quantity += 1;
+        })
+        setOrderInMonth(months);
       })
   }, [])
 
@@ -183,15 +186,18 @@ export default function Products() {
         </Col>
         <Col sm="6">
           <Chart
-          cubejsApi={cubejsApi}
-          query={{
-            measures: ["Users.count"],
-          }}
+            cubejsApi={cubejsApi}
+            query={{
+              measures: ["Orders.count"],
+            }}
             title="New Order Over Time"
             render={() => (
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart width={150} height={40} data={ordersInMonth}>
-                  <Bar dataKey="numberOfOrders" fill="#8884d8" />
+                <XAxis dataKey="month" />
+                <YAxis />
+                <Tooltip />
+                <BarChart data={ordersInMonth}>
+                  <Bar dataKey="quantity" fill="#8884d8" />
                 </BarChart>
               </ResponsiveContainer>
             )}
