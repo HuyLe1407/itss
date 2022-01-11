@@ -56,15 +56,13 @@ export default function SuggestProduct() {
       console.log(dataProductID)
       setRenderData(dataProduct.filter((data) =>checkData(data)))
     } else setRenderData(dataProduct)
-    console.log("121",dataProductID,dataProduct,renderData)
-  }, [dataProduct,dataProductID])
+  }, [dataProduct,dataProductID,tag])
  const checkData = (data) =>{
     let check = false
    tag.map(i=>{
      if(i.TagName == data.Tag){
        console.log(parseInt(location.state.minAgeSuggest),parseInt(i.MinAge) ,parseInt(i.MaxAge),location.state.Gender,i.Gender )
        if(parseInt(location.state.minAgeSuggest)>=parseInt(i.MinAge) && parseInt(location.state.minAgeSuggest) <=  parseInt(i.MaxAge) && location.state.Gender == i.Gender ){
-         console.log("dsad",data)
          check = true;
        }
      }

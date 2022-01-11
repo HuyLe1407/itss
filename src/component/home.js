@@ -141,6 +141,7 @@ export default function Home() {
   const indexofFirst = indexofLast - postPerPage
   const currentPosts = dataProduct.slice(indexofFirst, indexofLast)
   const paginate = (pageNumber) => setcurrentPage(pageNumber)
+
   return (
     <div className="home">
       <Navbar />
