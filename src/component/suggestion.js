@@ -143,7 +143,7 @@ export default function SuggestProduct() {
               <img src={product.Image} alt="product" />
               <div className="d-flex flex-column" style={{ marginLeft: '16px' }}>
                 <h2>{product.ProductName}</h2>
-                <h4>{product.ProductPrice} $</h4>
+                <h4>{product.ProductPrice} 千円</h4>
                 <p>Category: {product.ProductNumber}</p>
               </div>
             </Col>
