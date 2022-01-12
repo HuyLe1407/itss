@@ -8,6 +8,8 @@ import {
   Tooltip,
   ResponsiveContainer,
   PieChart,
+  CartesianGrid,
+  Legend,
   Pie,
   Cell,
   Bar,
@@ -56,6 +58,34 @@ export default function Products() {
   useEffect(() => {
     const temp = [];
     const tempProducts = [];
+    db.collection('users')
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          temp.push({ ...doc.data(), key: doc.id })
+        })
+        setUsers(temp)
+      })
+    db.collection('products')
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          tempProducts.push({ ...doc.data(), key: doc.id })
+        })
+        setProducts(tempProducts)
+      })
+    const tempOrder = [];
+    db.collection('customersBuy')
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          tempOrder.push({ ...doc.data(), key: doc.id })
+        })
+        setOrders(tempOrder)
+      })
+  }, [])
+  useEffect(() => {
+    const temp = [];
     const tempGender = [{ name: 'Male', value: 0 },
     { name: 'Female', value: 0 }];
     db.collection('users')
@@ -70,39 +100,21 @@ export default function Products() {
           }
 
         })
-        setUsers(temp)
         setGender(tempGender)
       })
-    db.collection('products')
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          tempProducts.push({ ...doc.data(), key: doc.id })
-        })
-        setProducts(tempProducts)
-      })
-      const tempOrder = [];
-      db.collection('customersBuy')
-          .get()
-          .then((querySnapshot) => {
-              querySnapshot.forEach((doc) => {
-                  tempOrder.push({ ...doc.data(), key: doc.id })
-              })
-              setOrders(tempOrder)
-          })
-  }, [])
- useEffect(()=>{
-     const months = [{ month: '1', quantity: 0 }, { month: '2', quantity: 0 }, { month: '3', quantity: 0 }, { month: '4', quantity: 0 },
-         { month: '5', quantity: 0 }, { month: '6', quantity: 0 }, { month: '7', quantity: 0 },
-         { month: '8', quantity: 0 }, { month: '9', quantity: 0 }, { month: '10', quantity: 0 },
-         { month: '11', quantity: 0 }, { month: '12', quantity: 0 }]
-     orders.forEach((order) => {
-         const index = order['BuyDate'].split('/')[0];
-         months[`${index - 1}`].quantity += 1;
-     })
-     console.log(months);
-     setOrderInMonth(months);
- },[orders])
+  }, [users])
+  useEffect(() => {
+    const months = [{ month: '1', quantity: 0 }, { month: '2', quantity: 0 }, { month: '3', quantity: 0 }, { month: '4', quantity: 0 },
+    { month: '5', quantity: 0 }, { month: '6', quantity: 0 }, { month: '7', quantity: 0 },
+    { month: '8', quantity: 0 }, { month: '9', quantity: 0 }, { month: '10', quantity: 0 },
+    { month: '11', quantity: 0 }, { month: '12', quantity: 0 }]
+    orders.forEach((order) => {
+      const index = order['BuyDate'].split('/')[0];
+      months[`${index - 1}`].quantity += 1;
+    })
+    console.log(months);
+    setOrderInMonth(months);
+  }, [orders])
   useEffect(() => {
     //Check user is logined
     auth.onAuthStateChanged((user) => {
@@ -184,24 +196,28 @@ export default function Products() {
             )}
           />
         </Col>
-        <Col sm="6">
-          <Chart
-            cubejsApi={cubejsApi}
-            query={{
-              measures: ["Orders.count"],
+        <Col sm="6" className="orders-chart">
+          <div className="pie-header">
+            <h5>New Orders Over Time</h5>
+          </div>
+          <BarChart
+            width={700}
+            height={290}
+            data={ordersInMonth}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 10
             }}
-            title="New Order Over Time"
-            render={() => (
-              <ResponsiveContainer width="100%" height="100%">
-                <XAxis dataKey="month" />
-                <YAxis />
-                <Tooltip />
-                <BarChart data={ordersInMonth}>
-                  <Bar dataKey="quantity" fill="#8884d8" />
-                </BarChart>
-              </ResponsiveContainer>
-            )}
-          />
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="month" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="quantity" fill="#8884d8" />
+          </BarChart>
         </Col>
       </Row>
       <br />
@@ -235,6 +251,49 @@ export default function Products() {
                 </div>
               </div>
             </Col>
+          </Row>
+        </Col>
+        <Col sm="6" className="tags-chart">
+          <div className="pie-header">
+            <h5>Number by Tags</h5>
+          </div>
+          <Row className="pb-2 label-group">
+            <Col className="center-block" align="center">
+              <div >
+                <div className="gender-select">
+                  <select>
+                    <option value="female">All</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
+              </div>
+            </Col>
+            <Col className="center-block" align="center">
+              <div>
+                <div className="female">
+                  <span>Female</span>
+                </div>
+              </div>
+            </Col>
+            <BarChart
+              width={700}
+              height={290}
+              data={ordersInMonth}
+              margin={{
+                top: 5,
+                right: 30,
+                left: 20,
+                bottom: 10
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="month" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="quantity" fill="#8884d8" />
+            </BarChart>
           </Row>
         </Col>
       </Row>

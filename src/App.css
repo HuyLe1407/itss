@@ -1,71 +1,90 @@
-.bg-myRed{
-    background-color: crimson;
+.bg-myRed {
+  background-color: crimson;
 }
-.content{
-    margin-top:10px;
-    padding: 12px;
-    height: 3000px;
+.content {
+  margin-top: 10px;
+  padding: 12px;
+  height: 3000px;
 }
-.home{
-    margin-left: 20px;
-    margin-right: 20px;
+.home {
+  margin-left: 20px;
+  margin-right: 20px;
 }
 input {
-    margin-top: 20px;
-    width: 360px;
-    height: 40px;
-    font-size: 20px;
-    padding-left: 10px;
-    border-radius: 3px;
+  margin-top: 20px;
+  width: 360px;
+  height: 40px;
+  font-size: 20px;
+  padding-left: 10px;
+  border-radius: 3px;
 }
-table{
-    margin-top: 20px;
+table {
+  margin-top: 20px;
 }
-.pageNumbers{
-    list-style: none;
-    display: flex;
+.pageNumbers {
+  list-style: none;
+  display: flex;
 }
-.pageNumbers li{
-    padding: 10px;
-    border: 1px solid rgb(53, 51, 51);
-    cursor: pointer;
-    height: 35px;
-    background-color: rgb(224, 222, 222);
+.pageNumbers li {
+  padding: 10px;
+  border: 1px solid rgb(53, 51, 51);
+  cursor: pointer;
+  height: 35px;
+  background-color: rgb(224, 222, 222);
 }
-.pageNumbers li:hover{
-    background-color: rgb(166, 185, 184);
+.pageNumbers li:hover {
+  background-color: rgb(166, 185, 184);
 }
 .navbar-nav > a {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 .btn {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 .gender-row {
-    padding: 0 12px 0 12px;
-    margin-right: 12px !important;
+  padding: 0 12px 0 12px;
+}
+.recharts-legend-wrapper {
+  transform: translate(10px, 10px);
 }
 .pie-chart {
-    border: 1px solid rgb(224, 222, 222);
-    border-radius: 0.25rem;
-    max-width: calc(50vw - 12px);
+  border: 1px solid rgb(224, 222, 222);
+  border-radius: 0.25rem;
+  max-width: calc(50vw - 24px);
+  background-color: white;
+  z-index: 5000;
+}
+.orders-chart {
+  border: 1px solid rgb(224, 222, 222);
+  border-radius: 0.25rem;
+  max-width: calc(50vw - 12px);
+  background-color: white;
+  z-index: 5000;
+}
+.tags-chart {
+  margin-left: 12px !important;
+  border: 1px solid rgb(224, 222, 222);
+  border-radius: 0.25rem;
+  max-width: calc(50vw - 12px);
+  background-color: white;
+  z-index: 5000;
 }
 .pie-header {
-    padding-top: 16px;
+  padding-top: 16px;
 }
 .navbar-collapse > button {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 .male {
-    width: 70px;
-    background-color: #0088FE;
-    text-align: center;
+  width: 70px;
+  background-color: #0088fe;
+  text-align: center;
 }
 .female {
-    width: 70px;
-    text-align: center;
-    background-color: #00C49F;
+  width: 70px;
+  text-align: center;
+  background-color: #00c49f;
 }
 .label-group {
-    display: flex;
+  display: flex;
 }
