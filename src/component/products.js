@@ -33,6 +33,7 @@ const renderSingleValue = (data) => (
 export default function Products() {
   const [users, setUsers] = useState([]);
   const [orders, setOrders] = useState([]);
+  const [tempOrders, setTempOrders] = useState([]);
   const [products, setProducts] = useState([]);
   const [gender, setGender] = useState([]);
   const [ordersInMonth, setOrderInMonth] = useState([]);
@@ -80,43 +81,28 @@ export default function Products() {
         })
         setProducts(tempProducts)
       })
-  }, [])
-
-  useEffect(() => {
-    const tempOrder = [];
-     db.collection('customersBuy')
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          tempOrder.push({ ...doc.data(), key: doc.id })
-        })
-        setOrders(tempOrder)
-      })
-  }, [])
-  
-  useEffect(() => {
-    async function fetchData() {
       const tempOrder = [];
-      const months = [{ month: '1', quantity: 0 }, { month: '2', quantity: 0 }, { month: '3', quantity: 0 }, { month: '4', quantity: 0 },
-      { month: '5', quantity: 0 }, { month: '6', quantity: 0 }, { month: '7', quantity: 0 },
-      { month: '8', quantity: 0 }, { month: '9', quantity: 0 }, { month: '10', quantity: 0 },
-      { month: '11', quantity: 0 }, { month: '12', quantity: 0 }]
-      await db.collection('customersBuy')
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            tempOrder.push({ ...doc.data(), key: doc.id })
+      db.collection('customersBuy')
+          .get()
+          .then((querySnapshot) => {
+              querySnapshot.forEach((doc) => {
+                  tempOrder.push({ ...doc.data(), key: doc.id })
+              })
+              setOrders(tempOrder)
           })
-          tempOrder.forEach((order) => {
-            const index = order['BuyDate'].split('/')[0];
-            months[`${index - 1}`].quantity += 1;
-          })
-          setOrderInMonth(months);
-        })
-    }
-    fetchData();
   }, [])
-
+ useEffect(()=>{
+     const months = [{ month: '1', quantity: 0 }, { month: '2', quantity: 0 }, { month: '3', quantity: 0 }, { month: '4', quantity: 0 },
+         { month: '5', quantity: 0 }, { month: '6', quantity: 0 }, { month: '7', quantity: 0 },
+         { month: '8', quantity: 0 }, { month: '9', quantity: 0 }, { month: '10', quantity: 0 },
+         { month: '11', quantity: 0 }, { month: '12', quantity: 0 }]
+     orders.forEach((order) => {
+         const index = order['BuyDate'].split('/')[0];
+         months[`${index - 1}`].quantity += 1;
+     })
+     console.log(months);
+     setOrderInMonth(months);
+ },[orders])
   useEffect(() => {
     //Check user is logined
     auth.onAuthStateChanged((user) => {
