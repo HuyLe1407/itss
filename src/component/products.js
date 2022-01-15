@@ -21,6 +21,7 @@ import cubejs from "@cubejs-client/core";
 import Chart from "./chart.js";
 import { db, auth } from '../firebase';
 import { useNavigate } from "react-router-dom";
+import {dataOrder, dataProducts, dataUsers} from "./Data";
 
 const cubejsApi = cubejs(process.env.REACT_APP_CUBEJS_TOKEN, {
   apiUrl: process.env.REACT_APP_API_URL
@@ -58,42 +59,17 @@ export default function Products() {
   useEffect(() => {
     const temp = [];
     const tempProducts = [];
-    db.collection('users')
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          temp.push({ ...doc.data(), key: doc.id })
-        })
-        setUsers(temp)
-      })
-    db.collection('products')
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          tempProducts.push({ ...doc.data(), key: doc.id })
-        })
-        setProducts(tempProducts)
-      })
+        setUsers(dataUsers)
+        setProducts(dataProducts)
     const tempOrder = [];
-    db.collection('customersBuy')
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          tempOrder.push({ ...doc.data(), key: doc.id })
-        })
-        setOrders(tempOrder)
-      })
+        setOrders(dataOrder)
   }, [])
   useEffect(() => {
     const temp = [];
     const tempGender = [{ name: 'Male', value: 0 },
     { name: 'Female', value: 0 }];
-    db.collection('users')
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          temp.push({ ...doc.data(), key: doc.id })
-          if (doc.data().Gender === 'male') {
+    dataUsers.forEach((doc) => {
+          if (doc.Gender === 'male') {
             tempGender[0].value++;
           } else {
             tempGender[1].value++;
@@ -101,7 +77,6 @@ export default function Products() {
 
         })
         setGender(tempGender)
-      })
   }, [users])
   useEffect(() => {
     const months = [{ month: '1', quantity: 0 }, { month: '2', quantity: 0 }, { month: '3', quantity: 0 }, { month: '4', quantity: 0 },

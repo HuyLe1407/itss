@@ -4,6 +4,7 @@ import { Navbar, Table } from 'react-bootstrap'
 import { auth, db } from '../firebase'
 import { Link, useNavigate } from 'react-router-dom'
 import { MdArticle } from 'react-icons/md'
+import {dataOrder, dataUsers} from "./Data";
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('')
   const [searchStartAge, setSearchStartDate] = useState('')
@@ -36,23 +37,8 @@ export default function Home() {
   useEffect(() => {
     const getUserFromFB = []
     const getProducts = []
-    db.collection('users')
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          getUserFromFB.push({ ...doc.data(), key: doc.id })
-        })
-        setUsers(getUserFromFB)
-      })
-      db.collection('customersBuy')
-          .get()
-          .then((querySnapshot) => {
-              querySnapshot.forEach((doc) => {
-
-                  getProducts.push({ ...doc.data(), key: doc.id })
-              })
-              setProductsBuy(getProducts)
-          })
+      setUsers(dataUsers)
+      setProductsBuy(dataOrder)
   }, [])
   useEffect(()=>{
     const pageNumber1 = []

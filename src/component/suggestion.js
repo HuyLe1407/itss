@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import { auth, db } from '../firebase'
 import { Col, Container, Row } from 'react-bootstrap'
+import {dataProducts, dataTag} from "./Data";
 
 const postPerPage = 6
 
@@ -19,44 +20,17 @@ export default function SuggestProduct() {
   const [tag, getTag] = useState([])
 
   useEffect(() => {
-    const productsData = []
-    const productMapData = []
-    db.collection('products')
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          productsData.push({ ...doc.data(), key: doc.id })
-        })
-        setDataProduct(productsData)
-      })
-    db.collection('productSuggestions')
-        .where("CustomerID","==",location.state.ID)
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            console.log(doc.data().ProductID);
-            productMapData.push(doc.data().ProductID);
-          })
-          setDataProductID(productMapData);
-
-        })
+        setDataProduct(dataProducts)
     const tagData = []
-    db.collection('tags')
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            tagData.push({ ...doc.data(), key: doc.id })
-          })
-          getTag(tagData)
-        })
+
+          getTag(dataTag)
   }, [])
 
   useEffect(() => {
-    if (dataProductID.length>0) {
-      console.log(dataProductID)
+    if (tag.length>0) {
       setRenderData(dataProduct.filter((data) =>checkData(data)))
     } else setRenderData(dataProduct)
-  }, [dataProduct,dataProductID,tag])
+  }, [dataProduct,tag])
  const checkData = (data) =>{
     let check = false
    tag.map(i=>{
@@ -142,7 +116,7 @@ export default function SuggestProduct() {
             <Col key={product.key} md={12} lg={6} className="d-flex align-items-center mb-4">
               <img src={product.Image} alt="product" />
               <div className="d-flex flex-column" style={{ marginLeft: '16px' }}>
-                <h2>{product.ProductName}</h2>
+                <h2>{product.ProductEnglishName}</h2>
                 <h4>{product.productPrice} 千円</h4>
                 <p>Category: {product.productNumber}</p>
               </div>
