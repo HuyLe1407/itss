@@ -78,7 +78,7 @@ export default function Home() {
                       return val
                   }
               }else if (searchStartAge!= '' && searchEndAge!='') {
-                  if(parseInt(searchStartAge)<=parseInt(val.Age)&&parseInt(val.Age)<parseInt(searchEndAge)) {
+                  if(parseInt(searchStartAge)<=parseInt(val.Age)&&parseInt(val.Age)<=parseInt(searchEndAge)) {
                       return val
                   }
               }
@@ -115,7 +115,7 @@ export default function Home() {
                       if(val.ID == i.CustomerId)
                           dataBuy = dataBuy + parseInt(i.Quantily)
                   })
-                  if(parseInt(searchStartOrder)<=dataBuy&&dataBuy<parseInt(searchEndOrder)) {
+                  if(parseInt(searchStartOrder)<=dataBuy&&dataBuy<=parseInt(searchEndOrder)) {
                       return val
                   }
               }
@@ -217,7 +217,7 @@ export default function Home() {
         <ul className="pagination justify-content-center">
           {pageNumber.map((number) => (
             <li key={number} className="page-item">
-              <a onClick={() => paginate(number)} className="page-link">
+              <a onClick={() => paginate(number)} className="page-link" style={currentPage == number?{position:'initial',color:'red'}:{position:'initial'}}>
                 {number}
               </a>
             </li>

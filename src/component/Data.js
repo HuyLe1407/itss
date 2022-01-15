@@ -853,4 +853,36 @@ export const dataTag=[
     {"TagName":"women2550","Gender":"female","MinAge":"25","MaxAge":"50"},
     {"TagName":"women3040","Gender":"female","MinAge":"30","MaxAge":"40"},
     {"TagName":"women3050","Gender":"female","MinAge":"30","MaxAge":"50"}
-]
+];
+export const categories=[
+    {"CategoryID":"1","ProductCateogries":"ドレス","English":"dress"},
+    {"CategoryID":"2","ProductCateogries":"カーデイガン","English":"cardigan"},
+    {"CategoryID":"3","ProductCateogries":"レギンス","English":"legging"},
+    {"CategoryID":"4","ProductCateogries":"スカート","English":"skirt"},
+    {"CategoryID":"5","ProductCateogries":"ビキニ","English":"bikini"},
+    {"CategoryID":"6","ProductCateogries":"スーツ","English":"suit"},
+    {"CategoryID":"7","ProductCateogries":"Tシャツ","English":"T shirt"},
+    {"CategoryID":"8","ProductCateogries":"シャツ","English":"shirt"},
+    {"CategoryID":"9","ProductCateogries":"コート","English":"coat"},
+    {"CategoryID":"10","ProductCateogries":"ベスト","English":"vest"},
+    {"CategoryID":"11","ProductCateogries":"パーカー","English":"hoodie"},
+    {"CategoryID":"12","ProductCateogries":"ズボン","English":"pants"},
+    {"CategoryID":"13","ProductCateogries":"ジーンズ","English":"jeans"},
+    {"CategoryID":"14","ProductCateogries":"短パン","English":"shorts"}
+];
+export const categoryName={
+    1:"ドレス",
+    2:"カーデイガン",
+   3:"レギンス",
+   4:"スカート",
+    5:"ビキニ",
+   6:"スーツ",
+   7:"Tシャツ",
+    8:"シャツ",
+    9:"コート",
+    10:"ベスト",
+    11:"パーカー",
+    12:"ズボン",
+    13:"ジーンズ",
+    14:"短パン",
+};
