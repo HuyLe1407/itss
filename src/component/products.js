@@ -271,10 +271,20 @@ export default function Products() {
             </Col>
             <Col className="center-block" align="center">
               <div>
-                <div className="female">
-                  <span>Female</span>
-                </div>
+                <form className="age-form">
+                  <label>
+                    Min:
+                    <input type="text" name="min" />
+                  </label>
+                  <label>
+                    Max:
+                    <input type="text" name="max" />
+                  </label>
+                </form>
               </div>
+            </Col>
+            <Col>
+              <input type="submit" className="submit-button" value="Submit" />
             </Col>
             <BarChart
               width={700}
