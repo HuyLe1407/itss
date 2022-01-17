@@ -61,6 +61,22 @@ table {
   background-color: white;
   z-index: 5000;
 }
+.age-form > label > input {
+  width: 50px !important;
+  height: 20px;
+  margin-right: 10px;
+  margin-top: 0px !important;
+}
+.submit-button {
+  width: 100px;
+  height: 20px;
+  margin-top: 0px;
+  font-size: 12px !important;
+}
+.age-form > label {
+  height: 34px;
+  margin-left: 10px;
+}
 .tags-chart {
   margin-left: 12px !important;
   border: 1px solid rgb(224, 222, 222);
