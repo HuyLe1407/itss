@@ -21,7 +21,7 @@ import cubejs from "@cubejs-client/core";
 import Chart from "./chart.js";
 import { db, auth } from '../firebase';
 import { useNavigate } from "react-router-dom";
-import {dataOrder, dataProducts, dataUsers} from "./Data";
+import { dataOrder, dataProducts, dataUsers } from "./Data";
 
 const cubejsApi = cubejs(process.env.REACT_APP_CUBEJS_TOKEN, {
   apiUrl: process.env.REACT_APP_API_URL
@@ -36,7 +36,6 @@ const renderSingleValue = (data) => (
 export default function Products() {
   const [users, setUsers] = useState([]);
   const [orders, setOrders] = useState([]);
-  const [tempOrders, setTempOrders] = useState([]);
   const [products, setProducts] = useState([]);
   const [gender, setGender] = useState([]);
   const [ordersInMonth, setOrderInMonth] = useState([]);
@@ -44,39 +43,27 @@ export default function Products() {
   const COLORS = ['#0088FE', '#00C49F'];
 
   const RADIAN = Math.PI / 180;
-  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-    return (
-      <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-        {`${(percent * 100).toFixed(0)}%`}
-      </text>
-    );
-  };
 
   useEffect(() => {
     const temp = [];
     const tempProducts = [];
-        setUsers(dataUsers)
-        setProducts(dataProducts)
+    setUsers(dataUsers)
+    setProducts(dataProducts)
     const tempOrder = [];
-        setOrders(dataOrder)
+    setOrders(dataOrder)
   }, [])
   useEffect(() => {
-    const temp = [];
     const tempGender = [{ name: 'Male', value: 0 },
     { name: 'Female', value: 0 }];
     dataUsers.forEach((doc) => {
-          if (doc.Gender === 'male') {
-            tempGender[0].value++;
-          } else {
-            tempGender[1].value++;
-          }
+      if (doc.Gender === 'male') {
+        tempGender[0].value++;
+      } else {
+        tempGender[1].value++;
+      }
 
-        })
-        setGender(tempGender)
+    })
+    setGender(tempGender)
   }, [users])
   useEffect(() => {
     const months = [{ month: '1', quantity: 0 }, { month: '2', quantity: 0 }, { month: '3', quantity: 0 }, { month: '4', quantity: 0 },
@@ -87,7 +74,6 @@ export default function Products() {
       const index = order['BuyDate'].split('/')[0];
       months[`${index - 1}`].quantity += 1;
     })
-    console.log(months);
     setOrderInMonth(months);
   }, [orders])
   useEffect(() => {
@@ -164,7 +150,7 @@ export default function Products() {
                     dataKey="Users.count"
                     name="Users"
                     stroke="rgb(106, 110, 229)"
-                    fill="rgba(106, 110, 229, .16)"
+                    fill="#8884d8"
                   />
                 </AreaChart>
               </ResponsiveContainer>
@@ -204,7 +190,17 @@ export default function Products() {
           </div>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart width="100%" height={250}>
-              <Pie data={gender} dataKey="value" label={renderCustomizedLabel}>
+              <Pie data={gender} dataKey="value" label={({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+                const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+                const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+                return (
+                  <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+                    {`${(percent * 100).toFixed(0)}%`}
+                  </text>
+                );
+              }}>
                 {gender.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
