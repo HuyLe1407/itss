@@ -19,7 +19,7 @@ import moment from "moment";
 import numeral from "numeral";
 import cubejs from "@cubejs-client/core";
 import Chart from "./chart.js";
-import { db, auth } from '../firebase';
+import { auth } from '../firebase';
 import { useNavigate } from "react-router-dom";
 import { dataOrder, dataProducts, dataUsers } from "./Data";
 
@@ -39,17 +39,18 @@ export default function Products() {
   const [products, setProducts] = useState([]);
   const [gender, setGender] = useState([]);
   const [ordersInMonth, setOrderInMonth] = useState([]);
+  const [tags, setNumberTags] = useState([]);
+  const [min, setMin] = useState('0');
+  const [max, setMax] = useState('55');
+  const [gen, setGen] = useState('all');
   const navigate = useNavigate();
   const COLORS = ['#0088FE', '#00C49F'];
 
   const RADIAN = Math.PI / 180;
 
   useEffect(() => {
-    const temp = [];
-    const tempProducts = [];
     setUsers(dataUsers)
     setProducts(dataProducts)
-    const tempOrder = [];
     setOrders(dataOrder)
   }, [])
   useEffect(() => {
@@ -85,6 +86,43 @@ export default function Products() {
       }
     })
   })
+  useEffect(() => {
+    const tempTag = [{ name: 'boy1518', quantity: 0 }, { name: 'boy1520', quantity: 0 }, { name: 'girl1015', quantity: 0 }, { name: 'girl1020', quantity: 0 },
+    { name: 'girl1520', quantity: 0 }, { name: 'men2030', quantity: 0 }, { name: 'men2040', quantity: 0 },
+    { name: 'men2050', quantity: 0 }, { name: 'men3040', quantity: 0 }, { name: 'men4050', quantity: 0 },
+    { name: 'women1530', quantity: 0 }, { name: 'women1820', quantity: 0 }, { name: 'women1825', quantity: 0 },
+    { name: 'women1830', quantity: 0 }, { name: 'women2030', quantity: 0 }, { name: 'women2040', quantity: 0 },
+    { name: 'women2550', quantity: 0 }, { name: 'women3040', quantity: 0 }, { name: 'women3050', quantity: 0 },
+    ]
+    let userTmp = [];
+    console.log(gen, min, max);
+    if (gen !== 'all') { userTmp = users.filter((ele) => ele['Gender'] === gen).map((ele) => ele['Age']); }
+    else { userTmp = users.map((ele) => ele['Age']); }
+    const userTemp = userTmp.filter((ele) => { return parseInt(max) >= ele && ele >= parseInt(min) });
+    const buyedProductID = orders.filter((ele) => userTemp.includes(ele['CustomerId'])).map(ele => ele['BuyedProductID']);
+    const tagTemp = buyedProductID.map((item) => {
+      const index = products.findIndex(ele => ele['ID'] === item);
+      return products[index]['Tag']
+    })
+    tagTemp.forEach((ele) => {
+      const i = tempTag.findIndex((e) => e.name === ele);
+      tempTag[i].quantity++;
+    })
+    console.log(tempTag)
+    setNumberTags(tempTag);
+  }, [min, max, gen, users, orders, products])
+
+  const handleMinChange = (event) => {
+    setMin(event.target.value);
+  }
+
+  const handleMaxChange = (event) => {
+    setMax(event.target.value);
+  }
+
+  const handleGenChange = (event) => {
+    setGen(event.target.value);
+  }
 
   return (
     <Container fluid className="pt-3">
@@ -232,8 +270,8 @@ export default function Products() {
             <Col className="center-block" align="center">
               <div >
                 <div className="gender-select">
-                  <select>
-                    <option value="female">All</option>
+                  <select onChange={handleGenChange}>
+                    <option value="all">All</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                   </select>
@@ -245,31 +283,28 @@ export default function Products() {
                 <form className="age-form">
                   <label>
                     Min:
-                    <input type="text" name="min" />
+                    <input type="text" name="min" onChange={handleMinChange} defaultValue="0" />
                   </label>
                   <label>
                     Max:
-                    <input type="text" name="max" />
+                    <input type="text" name="max" onChange={handleMaxChange} defaultValue="55" />
                   </label>
                 </form>
               </div>
             </Col>
-            <Col>
-              <input type="submit" className="submit-button" value="Submit" />
-            </Col>
             <BarChart
               width={700}
               height={290}
-              data={ordersInMonth}
+              data={tags}
               margin={{
                 top: 5,
-                right: 30,
-                left: 20,
+                right: 10,
+                left: 10,
                 bottom: 10
               }}
             >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
+              <XAxis dataKey="name" />
               <YAxis />
               <Tooltip />
               <Legend />
