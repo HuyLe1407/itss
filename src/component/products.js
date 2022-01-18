@@ -116,7 +116,7 @@ export default function Products() {
         quantity: ele['Quantily'],
       }
     });
-    console.log()
+    console.log(buyedProductID);
     const tagTemp = buyedProductID.map((item) => {
       const index = products.findIndex(ele => ele['ID'] === item['ID']);
       return {
