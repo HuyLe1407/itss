@@ -281,7 +281,7 @@ export default function Products() {
         </Col>
         <Col sm="6" className="tags-chart">
           <div className="pie-header">
-            <h5>Number by Tags</h5>
+            <h5>Order Number by Tags</h5>
           </div>
           <Row className="pb-2 label-group">
             <Col className="center-block" align="center">
