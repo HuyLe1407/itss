@@ -105,6 +105,7 @@ export default function Products() {
     { name: 'women1530', quantity: 0 }, { name: 'women1820', quantity: 0 }, { name: 'women1825', quantity: 0 },
     { name: 'women1830', quantity: 0 }, { name: 'women2030', quantity: 0 }, { name: 'women2040', quantity: 0 },
     { name: 'women2550', quantity: 0 }, { name: 'women3040', quantity: 0 }, { name: 'women3050', quantity: 0 },
+    { name: 'women1520', quantity: 0 }
     ]
     let userTmp = [];
     if (gen !== 'all') { userTmp = users.filter((ele) => ele['Gender'] === gen) }
@@ -112,14 +113,23 @@ export default function Products() {
     const userTemp = userTmp.filter((ele) =>
       parseInt(max) >= parseInt(ele['Age']) && parseInt(ele['Age']) >= parseInt(min)
     ).map(ele => ele['ID']);
-    const buyedProductID = orders.filter((ele) => userTemp.includes(ele['CustomerId'])).map(ele => ele['BuyedProductID']);
+    const buyedProductID = orders.filter((ele) => userTemp.includes(ele['CustomerId'])).map(ele => {
+      return {
+        ID: ele['BuyedProductID'],
+        quantity: ele['Quantily'],
+      }
+    });
+    console.log()
     const tagTemp = buyedProductID.map((item) => {
-      const index = products.findIndex(ele => ele['ID'] === item);
-      return products[index]['Tag']
+      const index = products.findIndex(ele => ele['ID'] === item['ID']);
+      return {
+        name: products[index]['Tag'],
+        quantity: item.quantity,
+      }
     })
     tagTemp.forEach((ele) => {
-      const i = tempTag.findIndex((e) => e.name === ele);
-      tempTag[i].quantity++;
+      const i = tempTag.findIndex((e) => e.name === ele.name);
+      tempTag[i].quantity += parseInt(ele.quantity);
     })
     tempTag = _.orderBy(tempTag, ['quantity'], ['desc'])
     setNumberTags(tempTag);
