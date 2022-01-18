@@ -88,8 +88,17 @@ table {
 .pie-header {
   padding-top: 16px;
 }
+.navbar-container {
+  z-index: 10000;
+}
 .navbar-collapse > button {
   margin-left: 20px;
+}
+.App > div > div:first-child {
+  z-index: 10000;
+}
+.container-fluid {
+  z-index: 5000;
 }
 .male {
   width: 70px;
