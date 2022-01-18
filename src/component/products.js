@@ -28,7 +28,7 @@ const cubejsApi = cubejs(process.env.REACT_APP_CUBEJS_TOKEN, {
   apiUrl: process.env.REACT_APP_API_URL
 });
 const numberFormatter = (item) => numeral(item).format("0,0");
-const dateFormatter = (item, index) => moment(index + 1, 'M').format('MM');
+const dateFormatter = (item, index) => moment(index + 1, 'M').format('MMM');
 
 const renderSingleValue = (data) => (
   <h1 height={300}>{numberFormatter(data)}</h1>
@@ -48,6 +48,17 @@ export default function Products() {
   const COLORS = ['#0088FE', '#00C49F'];
 
   const RADIAN = Math.PI / 180;
+  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+    return (
+      <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+        {`${(percent * 100).toFixed(0)}%`}
+      </text>
+    );
+  };
 
   useEffect(() => {
     setUsers(dataUsers)
@@ -68,10 +79,10 @@ export default function Products() {
     setGender(tempGender)
   }, [users])
   useEffect(() => {
-    const months = [{ name: 'January', month: '1', quantity: 0 }, { name: 'February', month: '2', quantity: 0 }, { name: 'March', month: '3', quantity: 0 }, { name: 'April', month: '4', quantity: 0 },
-    { name: 'May', month: '5', quantity: 0 }, { name: 'June', month: '6', quantity: 0 }, { name: 'July', month: '7', quantity: 0 },
-    { name: 'August', month: '8', quantity: 0 }, { name: 'September', month: '9', quantity: 0 }, { name: 'October', month: '10', quantity: 0 },
-    { name: 'November', month: '11', quantity: 0 }, { name: 'December', month: '12', quantity: 0 }]
+    const months = [{ name: 'Jan', month: '1', quantity: 0 }, { name: 'Feb', month: '2', quantity: 0 }, { name: 'Mar', month: '3', quantity: 0 }, { name: 'Apr', month: '4', quantity: 0 },
+    { name: 'May', month: '5', quantity: 0 }, { name: 'Jun', month: '6', quantity: 0 }, { name: 'Jul', month: '7', quantity: 0 },
+    { name: 'Aug', month: '8', quantity: 0 }, { name: 'Sep', month: '9', quantity: 0 }, { name: 'Oct', month: '10', quantity: 0 },
+    { name: 'Nov', month: '11', quantity: 0 }, { name: 'Dec', month: '12', quantity: 0 }]
     orders.forEach((order) => {
       const index = order['BuyDate'].split('/')[0];
       months[`${index - 1}`].quantity += 1;
@@ -230,17 +241,12 @@ export default function Products() {
           </div>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart width="100%" height={250}>
-              <Pie data={gender} dataKey="value" label={({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
-                const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-                const x = cx + radius * Math.cos(-midAngle * RADIAN);
-                const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-                return (
-                  <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-                    {`${(percent * 100).toFixed(0)}%`}
-                  </text>
-                );
-              }}>
+              <Pie data={gender}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                dataKey="value"
+                label={renderCustomizedLabel}>
                 {gender.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
