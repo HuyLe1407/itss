@@ -22,6 +22,7 @@ import Chart from "./chart.js";
 import { auth } from '../firebase';
 import { useNavigate } from "react-router-dom";
 import { dataOrder, dataProducts, dataUsers } from "./Data";
+import _ from 'lodash';
 
 const cubejsApi = cubejs(process.env.REACT_APP_CUBEJS_TOKEN, {
   apiUrl: process.env.REACT_APP_API_URL
@@ -87,7 +88,7 @@ export default function Products() {
     })
   })
   useEffect(() => {
-    const tempTag = [{ name: 'boy1518', quantity: 0 }, { name: 'boy1520', quantity: 0 }, { name: 'girl1015', quantity: 0 }, { name: 'girl1020', quantity: 0 },
+    let tempTag = [{ name: 'boy1518', quantity: 0 }, { name: 'boy1520', quantity: 0 }, { name: 'girl1015', quantity: 0 }, { name: 'girl1020', quantity: 0 },
     { name: 'girl1520', quantity: 0 }, { name: 'men2030', quantity: 0 }, { name: 'men2040', quantity: 0 },
     { name: 'men2050', quantity: 0 }, { name: 'men3040', quantity: 0 }, { name: 'men4050', quantity: 0 },
     { name: 'women1530', quantity: 0 }, { name: 'women1820', quantity: 0 }, { name: 'women1825', quantity: 0 },
@@ -109,6 +110,7 @@ export default function Products() {
       const i = tempTag.findIndex((e) => e.name === ele);
       tempTag[i].quantity++;
     })
+    tempTag = _.orderBy(tempTag, ['quantity'], ['desc'])
     setNumberTags(tempTag);
   }, [min, max, gen, users, orders, products])
 
@@ -163,7 +165,7 @@ export default function Products() {
       <br />
       <br />
       <Row>
-        <Col sm="6">
+        <Col sm="6" className="left-container">
           <Chart
             cubejsApi={cubejsApi}
             title="New Users Over Time"
@@ -200,13 +202,13 @@ export default function Products() {
             <h5>New Orders Over Time</h5>
           </div>
           <BarChart
-            width={700}
+            width={760}
             height={290}
             data={ordersInMonth}
             margin={{
               top: 5,
-              right: 30,
-              left: 20,
+              right: 10,
+              left: 0,
               bottom: 10
             }}
           >
@@ -293,13 +295,13 @@ export default function Products() {
               </div>
             </Col>
             <BarChart
-              width={700}
+              width={750}
               height={290}
               data={tags}
               margin={{
                 top: 5,
-                right: 10,
-                left: 10,
+                right: 0,
+                left: 0,
                 bottom: 10
               }}
             >
