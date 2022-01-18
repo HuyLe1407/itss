@@ -99,10 +99,11 @@ export default function Products() {
     })
   })
   useEffect(() => {
-    let tempTag = [{ name: 'boy1820', quantity: 0 }, { name: 'boy1018', quantity: 0 }, { name: 'girl1018', quantity: 0 }, { name: 'girl1520', quantity: 0 },
-    { name: 'men2030', quantity: 0 }, { name: 'men3040', quantity: 0 }, { name: 'men4050', quantity: 0 },
-    { name: 'women2030', quantity: 0 }, { name: 'women3040', quantity: 0 },
-    { name: 'women4050', quantity: 0 },
+    let tempTag = [{ name: 'boy1820', quantity: 0 }, { name: 'boy1018', quantity: 0 },
+    { name: 'girl1018', quantity: 0 }, { name: 'girl1820', quantity: 0 },
+    { name: 'men2030', quantity: 0 }, { name: 'men3040', quantity: 0 },
+    { name: 'men4050', quantity: 0 }, { name: 'women2030', quantity: 0 },
+    { name: 'women3040', quantity: 0 }, { name: 'women4050', quantity: 0 },
     ]
     let userTmp = [];
     if (gen !== 'all') { userTmp = users.filter((ele) => ele['Gender'] === gen) }
@@ -116,7 +117,6 @@ export default function Products() {
         quantity: ele['Quantily'],
       }
     });
-    console.log(buyedProductID);
     const tagTemp = buyedProductID.map((item) => {
       const index = products.findIndex(ele => ele['ID'] === item['ID']);
       return {
@@ -124,9 +124,11 @@ export default function Products() {
         quantity: item.quantity,
       }
     })
+    console.log(tagTemp)
     tagTemp.forEach((ele) => {
       const i = tempTag.findIndex((e) => e.name === ele.name);
-      tempTag[i].quantity += parseInt(ele.quantity);
+      if (i === -1) console.log(i, ele)
+      if (i > -1) tempTag[i].quantity += parseInt(ele.quantity);
     })
     tempTag = _.orderBy(tempTag, ['quantity'], ['desc'])
     setNumberTags(tempTag);
