@@ -290,11 +290,11 @@ export default function Products() {
               <div>
                 <form className="age-form">
                   <label>
-                    Min:
+                    Min Age:
                     <input type="text" name="min" onChange={handleMinChange} defaultValue="0" />
                   </label>
                   <label>
-                    Max:
+                    Max Age:
                     <input type="text" name="max" onChange={handleMaxChange} defaultValue="55" />
                   </label>
                 </form>
