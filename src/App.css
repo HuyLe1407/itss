@@ -50,7 +50,7 @@ table {
 .pie-chart {
   border: 1px solid rgb(224, 222, 222);
   border-radius: 0.25rem;
-  max-width: calc(50vw - 54px);
+  max-width: calc(50vw - 24px);
   background-color: white;
   z-index: 5000;
 }

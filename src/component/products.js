@@ -220,7 +220,7 @@ export default function Products() {
             <h5>New Orders Over Time</h5>
           </div>
           <BarChart
-            width={760}
+            width={650}
             height={290}
             data={ordersInMonth}
             margin={{
@@ -308,7 +308,7 @@ export default function Products() {
               </div>
             </Col>
             <BarChart
-              width={750}
+              width={650}
               height={290}
               data={tags}
               margin={{
