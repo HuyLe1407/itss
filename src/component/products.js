@@ -99,13 +99,10 @@ export default function Products() {
     })
   })
   useEffect(() => {
-    let tempTag = [{ name: 'boy1518', quantity: 0 }, { name: 'boy1520', quantity: 0 }, { name: 'girl1015', quantity: 0 }, { name: 'girl1020', quantity: 0 },
-    { name: 'girl1520', quantity: 0 }, { name: 'men2030', quantity: 0 }, { name: 'men2040', quantity: 0 },
-    { name: 'men2050', quantity: 0 }, { name: 'men3040', quantity: 0 }, { name: 'men4050', quantity: 0 },
-    { name: 'women1530', quantity: 0 }, { name: 'women1820', quantity: 0 }, { name: 'women1825', quantity: 0 },
-    { name: 'women1830', quantity: 0 }, { name: 'women2030', quantity: 0 }, { name: 'women2040', quantity: 0 },
-    { name: 'women2550', quantity: 0 }, { name: 'women3040', quantity: 0 }, { name: 'women3050', quantity: 0 },
-    { name: 'women1520', quantity: 0 }
+    let tempTag = [{ name: 'boy1820', quantity: 0 }, { name: 'boy1018', quantity: 0 }, { name: 'girl1018', quantity: 0 }, { name: 'girl1520', quantity: 0 },
+    { name: 'men2030', quantity: 0 }, { name: 'men3040', quantity: 0 }, { name: 'men4050', quantity: 0 },
+    { name: 'women2030', quantity: 0 }, { name: 'women3040', quantity: 0 },
+    { name: 'women4050', quantity: 0 },
     ]
     let userTmp = [];
     if (gen !== 'all') { userTmp = users.filter((ele) => ele['Gender'] === gen) }
