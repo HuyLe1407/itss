@@ -67,10 +67,10 @@ export default function Products() {
     setGender(tempGender)
   }, [users])
   useEffect(() => {
-    const months = [{ month: '1', quantity: 0 }, { month: '2', quantity: 0 }, { month: '3', quantity: 0 }, { month: '4', quantity: 0 },
-    { month: '5', quantity: 0 }, { month: '6', quantity: 0 }, { month: '7', quantity: 0 },
-    { month: '8', quantity: 0 }, { month: '9', quantity: 0 }, { month: '10', quantity: 0 },
-    { month: '11', quantity: 0 }, { month: '12', quantity: 0 }]
+    const months = [{ name: 'January', month: '1', quantity: 0 }, { name: 'February', month: '2', quantity: 0 }, { name: 'March', month: '3', quantity: 0 }, { name: 'April', month: '4', quantity: 0 },
+    { name: 'May', month: '5', quantity: 0 }, { name: 'June', month: '6', quantity: 0 }, { name: 'July', month: '7', quantity: 0 },
+    { name: 'August', month: '8', quantity: 0 }, { name: 'September', month: '9', quantity: 0 }, { name: 'October', month: '10', quantity: 0 },
+    { name: 'November', month: '11', quantity: 0 }, { name: 'December', month: '12', quantity: 0 }]
     orders.forEach((order) => {
       const index = order['BuyDate'].split('/')[0];
       months[`${index - 1}`].quantity += 1;
@@ -95,10 +95,11 @@ export default function Products() {
     { name: 'women2550', quantity: 0 }, { name: 'women3040', quantity: 0 }, { name: 'women3050', quantity: 0 },
     ]
     let userTmp = [];
-    console.log(gen, min, max);
-    if (gen !== 'all') { userTmp = users.filter((ele) => ele['Gender'] === gen).map((ele) => ele['Age']); }
-    else { userTmp = users.map((ele) => ele['Age']); }
-    const userTemp = userTmp.filter((ele) => { return parseInt(max) >= ele && ele >= parseInt(min) });
+    if (gen !== 'all') { userTmp = users.filter((ele) => ele['Gender'] === gen) }
+    else { userTmp = users }
+    const userTemp = userTmp.filter((ele) =>
+      parseInt(max) >= parseInt(ele['Age']) && parseInt(ele['Age']) >= parseInt(min)
+    ).map(ele => ele['ID']);
     const buyedProductID = orders.filter((ele) => userTemp.includes(ele['CustomerId'])).map(ele => ele['BuyedProductID']);
     const tagTemp = buyedProductID.map((item) => {
       const index = products.findIndex(ele => ele['ID'] === item);
@@ -108,7 +109,6 @@ export default function Products() {
       const i = tempTag.findIndex((e) => e.name === ele);
       tempTag[i].quantity++;
     })
-    console.log(tempTag)
     setNumberTags(tempTag);
   }, [min, max, gen, users, orders, products])
 
@@ -211,7 +211,7 @@ export default function Products() {
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="month" />
+            <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
             <Legend />
