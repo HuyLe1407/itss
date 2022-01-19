@@ -43,6 +43,7 @@ table {
 }
 .gender-row {
   padding: 0 12px 0 12px;
+  margin-bottom: 20px !important;
 }
 .recharts-legend-wrapper {
   transform: translate(10px, 10px);
