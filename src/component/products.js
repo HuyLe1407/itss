@@ -99,8 +99,7 @@ export default function Products() {
     })
   })
   useEffect(() => {
-    let tempTag = [{ name: 'boy1820', quantity: 0 }, { name: 'boy1018', quantity: 0 },
-    { name: 'girl1018', quantity: 0 }, { name: 'girl1820', quantity: 0 },
+    let tempTag = [{ name: 'boy1020', quantity: 0 },{ name: 'girl1020', quantity: 0 },
     { name: 'men2030', quantity: 0 }, { name: 'men3040', quantity: 0 },
     { name: 'men4050', quantity: 0 }, { name: 'women2030', quantity: 0 },
     { name: 'women3040', quantity: 0 }, { name: 'women4050', quantity: 0 },

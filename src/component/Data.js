@@ -2501,7 +2501,7 @@ export const dataProducts = [
         "ID": "3",
         "productNumber": "1",
         "ProductEnglishName": "Yellow dress",
-        "Tag": "girl1820",
+        "Tag": "girl1020",
         "Image": "https://5.imimg.com/data5/SA/JA/MY-10528207/yellow-with-multi-jacquard-girls-tutu-party-dress-250x250.jpg",
         "productPrice": "2"
     },
@@ -2509,7 +2509,7 @@ export const dataProducts = [
         "ID": "4",
         "productNumber": "1",
         "ProductEnglishName": "Pink Dress",
-        "Tag": "girl1018",
+        "Tag": "girl1020",
         "Image": "https://5.imimg.com/data5/HV/SX/LW/SELLER-10528207/20190130-sa0071-250x250.jpg",
         "productPrice": "10"
     },
@@ -2685,7 +2685,7 @@ export const dataProducts = [
         "ID": "26",
         "productNumber": "3",
         "ProductEnglishName": "Black legging",
-        "Tag": "girl1820",
+        "Tag": "girl1020",
         "Image": "https://3.imimg.com/data3/NC/EM/MY-2051493/black-legging-250x250.png",
         "productPrice": "5"
     },
@@ -2693,7 +2693,7 @@ export const dataProducts = [
         "ID": "27",
         "productNumber": "3",
         "ProductEnglishName": "White legging",
-        "Tag": "girl1820",
+        "Tag": "girl1020",
         "Image": "https://5.imimg.com/data5/FP/OR/MY-64591151/ladies-ruby-cut-white-legging-250x250.jpg",
         "productPrice": "1"
     },
@@ -2701,7 +2701,7 @@ export const dataProducts = [
         "ID": "28",
         "productNumber": "3",
         "ProductEnglishName": "Orange legging",
-        "Tag": "girl1820",
+        "Tag": "girl1020",
         "Image": "https://cdn.shopify.com/s/files/1/2388/5355/products/all-over-print-plus-size-leggings-white-front-60a354e5d5823_250x.jpg?v=1623379074",
         "productPrice": "7"
     },
@@ -2725,7 +2725,7 @@ export const dataProducts = [
         "ID": "31",
         "productNumber": "4",
         "ProductEnglishName": "Red skirt",
-        "Tag": "girl1820",
+        "Tag": "girl1020",
         "Image": "https://5.imimg.com/data5/RH/EB/MY-37829069/ladies-short-skirt-250x250.jpg",
         "productPrice": "3"
     },
@@ -2733,7 +2733,7 @@ export const dataProducts = [
         "ID": "32",
         "productNumber": "4",
         "ProductEnglishName": "Yellow skirt",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://ae01.alicdn.com/kf/H4be5213608cd45f2a2974781cd78b544R/Korean-Silk-Skirts-Women-Elegant-Office-Lady-Satin-Skirt-Woman-High-Waist-Yellow-Skirt-Faldas-Mujer.jpg_250x250.jpg",
         "productPrice": "1"
     },
@@ -2781,7 +2781,7 @@ export const dataProducts = [
         "ID": "38",
         "productNumber": "4",
         "ProductEnglishName": "Orange skirt",
-        "Tag": "girl1820",
+        "Tag": "girl1020",
         "Image": "https://www.bigw.com.au/medias/sys_master/images/images/h2e/h0f/28539433189406.jpg",
         "productPrice": "9"
     },
@@ -2797,7 +2797,7 @@ export const dataProducts = [
         "ID": "40",
         "productNumber": "4",
         "ProductEnglishName": "Brownskirt",
-        "Tag": "girl1820",
+        "Tag": "girl1020",
         "Image": "https://i.pinimg.com/474x/90/19/c4/9019c45035e54961c5fe55bc6c83737a.jpg",
         "productPrice": "3"
     },
@@ -2901,7 +2901,7 @@ export const dataProducts = [
         "ID": "53",
         "productNumber": "6",
         "ProductEnglishName": "Blue suit",
-        "Tag": "boy1018",
+        "Tag": "boy1020",
         "Image": "https://cdn.shopify.com/s/files/1/0371/1345/products/RPS74424_250x.jpg?v=1552530762",
         "productPrice": "8"
     },
@@ -2909,7 +2909,7 @@ export const dataProducts = [
         "ID": "54",
         "productNumber": "6",
         "ProductEnglishName": "Pink suit",
-        "Tag": "boy1018",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/HY/MN/FQ/SELLER-66752135/mens-pink-and-black-designer-suit-250x250.jpg",
         "productPrice": "4"
     },
@@ -3045,7 +3045,7 @@ export const dataProducts = [
         "ID": "71",
         "productNumber": "8",
         "ProductEnglishName": "Red shirt",
-        "Tag": "boy1018",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/RR/JF/MW/SELLER-96884460/red-basic-t-shirt-250x250.jpg",
         "productPrice": "2"
     },
@@ -3053,7 +3053,7 @@ export const dataProducts = [
         "ID": "72",
         "productNumber": "8",
         "ProductEnglishName": "Yellow shirt",
-        "Tag": "boy1018",
+        "Tag": "boy1020",
         "Image": "https://lh3.googleusercontent.com/proxy/9CorjpEDUTixTyjX_E4nocRuwy6pzHbTBhFnTsUYaieUKxAAgy43xjkPY7m-7_K9rmcubAeJyyO7-WGOfzmT4B20RK9-_9NkO73YysDz5lFkrxXhJD0cpClSwbHtaXwkGsJF0rIBXK4f6TZdAiEtytvtdR7abdAdOsCMwZGdtP4oXtkUiQ3Pxw6Yn2VBZq9zl0qdrRBUbig33MBKzV8nnBqXDX9tpw",
         "productPrice": "4"
     },
@@ -3061,7 +3061,7 @@ export const dataProducts = [
         "ID": "73",
         "productNumber": "8",
         "ProductEnglishName": "Blue shirt",
-        "Tag": "boy1018",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/ZT/VS/UI/SELLER-3370114/men-blue-shirt-250x250.jpg",
         "productPrice": "6"
     },
@@ -3069,7 +3069,7 @@ export const dataProducts = [
         "ID": "74",
         "productNumber": "8",
         "ProductEnglishName": "Pink shirt",
-        "Tag": "boy1018",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/SELLER/Default/2021/2/RM/KM/PL/61254914/half-sleeves-ladies-cotton-t-shirt-250x250.jpeg",
         "productPrice": "3"
     },
@@ -3077,7 +3077,7 @@ export const dataProducts = [
         "ID": "75",
         "productNumber": "8",
         "ProductEnglishName": "Green shirt",
-        "Tag": "boy1018",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/XA/JA/MY-21186944/green-mens-t-shirts-250x250.jpg",
         "productPrice": "1"
     },
@@ -3085,7 +3085,7 @@ export const dataProducts = [
         "ID": "76",
         "productNumber": "8",
         "ProductEnglishName": "Black shirt",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/OJ/GB/MY-12882802/black-plain-t-shirt-500x500-250x250.jpg",
         "productPrice": "9"
     },
@@ -3093,7 +3093,7 @@ export const dataProducts = [
         "ID": "77",
         "productNumber": "8",
         "ProductEnglishName": "White shirt",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/XT/BP/MY-3738849/office-formal-shirt-250x250.jpg",
         "productPrice": "3"
     },
@@ -3101,7 +3101,7 @@ export const dataProducts = [
         "ID": "78",
         "productNumber": "8",
         "ProductEnglishName": "Orange shirt",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/RL/AP/RF/SELLER-12383379/men-s-orange-plain-t-shirt-250x250.jpg",
         "productPrice": "3"
     },
@@ -3109,7 +3109,7 @@ export const dataProducts = [
         "ID": "79",
         "productNumber": "8",
         "ProductEnglishName": "Purple shirt",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/VS/OK/IA/SELLER-59499481/mens-cotton-t-shirt-250x250.jpg",
         "productPrice": "9"
     },
@@ -3117,7 +3117,7 @@ export const dataProducts = [
         "ID": "80",
         "productNumber": "8",
         "ProductEnglishName": "Brownshirt",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/WL/HN/MY-23027031/mens-plain-brown-shirt-250x250.jpg",
         "productPrice": "8"
     },
@@ -3133,7 +3133,7 @@ export const dataProducts = [
         "ID": "82",
         "productNumber": "9",
         "ProductEnglishName": "Yellow coat",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://www.babyshop.com/images/929823/card_small.jpg",
         "productPrice": "5"
     },
@@ -3229,7 +3229,7 @@ export const dataProducts = [
         "ID": "94",
         "productNumber": "10",
         "ProductEnglishName": "Pink vest",
-        "Tag": "girl1820",
+        "Tag": "girl1020",
         "Image": "https://media3.scdn.vn/img4/2021/12_08/1PecjdaOU5wooVeMNwCw_simg_de2fe0_250x250_maxb.png",
         "productPrice": "1"
     },
@@ -3285,7 +3285,7 @@ export const dataProducts = [
         "ID": "101",
         "productNumber": "11",
         "ProductEnglishName": "Red hoodie",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/LM/GY/MY-51407659/mens-red-hoodie-250x250.jpg",
         "productPrice": "5"
     },
@@ -3293,7 +3293,7 @@ export const dataProducts = [
         "ID": "102",
         "productNumber": "11",
         "ProductEnglishName": "Yellow hoodie",
-        "Tag": "girl1820",
+        "Tag": "girl1020",
         "Image": "https://media3.scdn.vn/img2/2018/10_21/1qG69i_simg_b5529c_250x250_maxb.jpg",
         "productPrice": "10"
     },
@@ -3301,7 +3301,7 @@ export const dataProducts = [
         "ID": "103",
         "productNumber": "11",
         "ProductEnglishName": "Blue hoodie",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/RX/RV/MY-48546261/mens-plain-hoodie-250x250.jpg",
         "productPrice": "8"
     },
@@ -3309,7 +3309,7 @@ export const dataProducts = [
         "ID": "104",
         "productNumber": "11",
         "ProductEnglishName": "Pink hoodie",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://media3.scdn.vn/img3/2019/5_26/puG3Ht_simg_b5529c_250x250_maxb.jpg",
         "productPrice": "10"
     },
@@ -3317,7 +3317,7 @@ export const dataProducts = [
         "ID": "105",
         "productNumber": "11",
         "ProductEnglishName": "Green hoodie",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/BO/CO/MY-51407659/mens-green-hoodie-250x250.jpg",
         "productPrice": "9"
     },
@@ -3325,7 +3325,7 @@ export const dataProducts = [
         "ID": "106",
         "productNumber": "11",
         "ProductEnglishName": "Black hoodie",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://media3.scdn.vn/img4/2020/01_04/he8cVqOCwITSF1PtLcPU_simg_b5529c_250x250_maxb.jpg",
         "productPrice": "5"
     },
@@ -3333,7 +3333,7 @@ export const dataProducts = [
         "ID": "107",
         "productNumber": "11",
         "ProductEnglishName": "White hoodie",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/MD/QD/MY-57047128/plain-white-hoodie-250x250.jpg",
         "productPrice": "5"
     },
@@ -3341,7 +3341,7 @@ export const dataProducts = [
         "ID": "108",
         "productNumber": "11",
         "ProductEnglishName": "Orange hoodie",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/UH/SL/IE/SELLER-96884460/orange-basic-hoodie-250x250.png",
         "productPrice": "2"
     },
@@ -3349,7 +3349,7 @@ export const dataProducts = [
         "ID": "109",
         "productNumber": "11",
         "ProductEnglishName": "Purple hoodie",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://www.beezra.com/uploads/cache/httpsiebayimgcom00sMTYwMFgxNjAwzUQcAAOSwRXFfdeGt12JPGsetid880000500F-250x250.png",
         "productPrice": "2"
     },
@@ -3357,7 +3357,7 @@ export const dataProducts = [
         "ID": "110",
         "productNumber": "11",
         "ProductEnglishName": "Brownhoodie",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://ae01.alicdn.com/kf/H78b18a1a6155408d87c2623a0fa1497d6/Rockmore-N-u-Qu-Kh-o-Kho-c-N-Vintage-Zip-Up-R-i-o-o.jpg_250x250.jpg",
         "productPrice": "3"
     },
@@ -3365,7 +3365,7 @@ export const dataProducts = [
         "ID": "111",
         "productNumber": "12",
         "ProductEnglishName": "Red pants",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/GM/VG/ED/SELLER-3581552/mens-red-polyester-track-pants-250x250.jpg",
         "productPrice": "8"
     },
@@ -3373,7 +3373,7 @@ export const dataProducts = [
         "ID": "112",
         "productNumber": "12",
         "ProductEnglishName": "Yellow pants",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/SELLER/Default/2021/2/MS/SW/GU/117535401/new-product-250x250.jpeg",
         "productPrice": "1"
     },
@@ -3429,7 +3429,7 @@ export const dataProducts = [
         "ID": "119",
         "productNumber": "12",
         "ProductEnglishName": "Purple pants",
-        "Tag": "girl1018",
+        "Tag": "girl1020",
         "Image": "https://bonghoanho.vn/image/cache/catalog/nam-2016/thu-dong/moi/quan-legging-len-tam-size-dai-kidsky-q106134-250x250h.webp",
         "productPrice": "7"
     },
@@ -3453,7 +3453,7 @@ export const dataProducts = [
         "ID": "122",
         "productNumber": "13",
         "ProductEnglishName": "Yellow jeans",
-        "Tag": "girl1018",
+        "Tag": "girl1020",
         "Image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREo-aEC7_mqQlkdVCqo2WxB600imI_QcN5ZA&usqp=CAU",
         "productPrice": "8"
     },
@@ -3461,7 +3461,7 @@ export const dataProducts = [
         "ID": "123",
         "productNumber": "13",
         "ProductEnglishName": "Blue jeans",
-        "Tag": "boy1018",
+        "Tag": "boy1020",
         "Image": "https://media3.scdn.vn/img3/2019/11_9/FDcgFs_simg_b5529c_250x250_maxb.jpg",
         "productPrice": "1"
     },
@@ -3469,7 +3469,7 @@ export const dataProducts = [
         "ID": "124",
         "productNumber": "13",
         "ProductEnglishName": "Pink jeans",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://media3.scdn.vn/img4/2021/10_15/ZvWOPZU5bhgqfY8Q4Q96_simg_de2fe0_250x250_maxb.jpg",
         "productPrice": "10"
     },
@@ -3485,7 +3485,7 @@ export const dataProducts = [
         "ID": "126",
         "productNumber": "13",
         "ProductEnglishName": "Black jeans",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/WO/FY/MY-6232062/women-sky-blue-jeans-250x250.jpg",
         "productPrice": "7"
     },
@@ -3509,7 +3509,7 @@ export const dataProducts = [
         "ID": "129",
         "productNumber": "13",
         "ProductEnglishName": "Purple jeans",
-        "Tag": "girl1820",
+        "Tag": "girl1020",
         "Image": "https://ae01.alicdn.com/kf/Ha8f2fc2a7e8540ca9dbc63d6a620702eq/GUUZYUVIZ-Purple-Jeans-Woman-Loose-Casual-Plus-Size-Denim-Pantalones-De-Mujer-High-Waist-Jeans-Trousers.jpg_250x250.jpg",
         "productPrice": "1"
     },
@@ -3525,7 +3525,7 @@ export const dataProducts = [
         "ID": "131",
         "productNumber": "14",
         "ProductEnglishName": "Red shorts",
-        "Tag": "boy1018",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/JA/YL/MY-40996538/red-mens-shorts-250x250.jpg",
         "productPrice": "5"
     },
@@ -3533,7 +3533,7 @@ export const dataProducts = [
         "ID": "132",
         "productNumber": "14",
         "ProductEnglishName": "Yellow shorts",
-        "Tag": "boy1018",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/UJ/LU/MY-18760503/9-250x250.jpg",
         "productPrice": "1"
     },
@@ -3541,7 +3541,7 @@ export const dataProducts = [
         "ID": "133",
         "productNumber": "14",
         "ProductEnglishName": "Blue shorts",
-        "Tag": "boy1018",
+        "Tag": "boy1020",
         "Image": "https://media3.scdn.vn/img4/2020/08_21/k99IDQvC4uSmVcGOcRrl_simg_b5529c_250x250_maxb.jpg",
         "productPrice": "2"
     },
@@ -3549,7 +3549,7 @@ export const dataProducts = [
         "ID": "134",
         "productNumber": "14",
         "ProductEnglishName": "Pink shorts",
-        "Tag": "girl1820",
+        "Tag": "girl1020",
         "Image": "https://5.imimg.com/data5/EO/CI/MD/SELLER-43218769/girls-shorts-250x250.jpg",
         "productPrice": "9"
     },
@@ -3557,7 +3557,7 @@ export const dataProducts = [
         "ID": "135",
         "productNumber": "14",
         "ProductEnglishName": "Green shorts",
-        "Tag": "boy1018",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/SELLER/Default/2021/8/ME/MK/IU/28739614/mens-plain-shorts-250x250.jpg",
         "productPrice": "9"
     },
@@ -3565,7 +3565,7 @@ export const dataProducts = [
         "ID": "136",
         "productNumber": "14",
         "ProductEnglishName": "Black shorts",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/FA/TY/FP/SELLER-55717394/men-shorts-250x250.jpg",
         "productPrice": "8"
     },
@@ -3573,7 +3573,7 @@ export const dataProducts = [
         "ID": "137",
         "productNumber": "14",
         "ProductEnglishName": "White shorts",
-        "Tag": "boy1820",
+        "Tag": "boy1020",
         "Image": "https://5.imimg.com/data5/MK/DV/XQ/SELLER-10555922/adidas-mens-white-shorts-250x250.jpg",
         "productPrice": "5"
     },
@@ -7775,10 +7775,8 @@ export const dataOrder = [
     }
 ];
 export const dataTag = [
-    { "TagName": "boy1820", "Gender": "male", "MinAge": "18", "MaxAge": "20" },
-    { "TagName": "boy1018", "Gender": "male", "MinAge": "10", "MaxAge": "18" },
-    { "TagName": "girl1018", "Gender": "female", "MinAge": "10", "MaxAge": "18" },
-    { "TagName": "girl1520", "Gender": "female", "MinAge": "15", "MaxAge": "20" },
+    { "TagName": "boy1020", "Gender": "male", "MinAge": "10", "MaxAge": "20" },
+    { "TagName": "girl1020", "Gender": "female", "MinAge": "10", "MaxAge": "18" },
     { "TagName": "men2030", "Gender": "male", "MinAge": "20", "MaxAge": "30" },
     { "TagName": "men3040", "Gender": "male", "MinAge": "30", "MaxAge": "40" },
     { "TagName": "men4050", "Gender": "male", "MinAge": "40", "MaxAge": "50" },
