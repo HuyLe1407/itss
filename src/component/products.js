@@ -288,9 +288,9 @@ export default function Products() {
               <div >
                 <div className="gender-select">
                   <select onChange={handleGenChange}>
-                    <option value="all">All</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
+                    <option value="all">全部</option>
+                    <option value="male">男性</option>
+                    <option value="female">女性</option>
                   </select>
                 </div>
               </div>
